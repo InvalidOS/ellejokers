@@ -2,7 +2,7 @@ ellejokers.Resident {
 	key = 'cheshire',
 	atlas = 'furrychesh',
 	pos = { x = 0, y = 1 },
-	config = { extra = { xmult_mod = 0.1, xmult = 1, eaten = 0, active = true } },
+	config = { extra = { xmult_mod = 0.1, xmult = 1, eaten = 0, active = true, anim_timer = 0 } },
 	loc_vars = function(self, info_queue, card)
 		return { vars = {
 			localize(ellejokers.mod_data.config.nsfw and "elle_furry_eat" or "elle_furry_destroy"):lower(),
@@ -16,34 +16,33 @@ ellejokers.Resident {
 	in_pool = function (self, args) return false end,
 	elle_tail = { x = 7, y = 1 },
 	calculate = function(self, card, context)
-		if context.joker_main  then
-			ret = {}
+		if context.joker_main then
+			card.ability.extra.active = true
 			
-			if card.ability.extra.xmult ~= 1 then
-				ret.mult = card.ability.extra.xmult
-			end
-
-			if not card.ability.extra.active then
-				card.ability.extra.active = true
-				ret.extra = { message = localize("elle_active_refreshed") }
-			end
-			
-			return ret
+			return {
+				mult = card.ability.extra.xmult ~= 1 and card.ability.extra.xmult or nil,
+				extra = not card.ability.extra.active and { message = localize("elle_active_refreshed") } or nil
+			}
 		end
 
 		if context.end_of_round and context.main_eval and card.ability.extra.eaten > 0 then
 			local mod = card.ability.extra.eaten * card.ability.extra.xmult_mod
 			
 			card.ability.extra.xmult = card.ability.extra.xmult + mod
-			card.ability.extra.eaten = 0
 			
+			G.E_MANAGER:add_event(Event({func=function()
+				card.ability.extra.eaten = 0
 
-			return {
-				message = localize { type = 'variable', key = 'a_xmult', vars = { mod } },
-				colour = G.C.MULT
-			}
+				if ellejokers.mod_data.config.nsfw then
+					card.ability.extra.anim_timer = 0.5
+					--play_sound("elle_burp") -- will uncomment once i've recorded myself burping :giggle_hehe:
+				end
+			return true end}))
+			
+			return { message = localize("k_upgrade_ex") }
 		end
 	end,
+	update = function(self, card, dt) ellejokers.furry_sprite(card) end,
 	resident_buttons = {
 		{
 			text = function() return localize(ellejokers.mod_data.config.nsfw and "elle_furry_eat" or "elle_furry_destroy") end,
@@ -51,7 +50,10 @@ ellejokers.Resident {
 			use = function(self, card)
 				card.ability.extra.active = false
 				SMODS.destroy_cards(G.hand.highlighted[1])
-				card.ability.extra.eaten = card.ability.extra.eaten + 1
+
+				G.E_MANAGER:add_event(Event({func=function()
+					card.ability.extra.eaten = card.ability.extra.eaten + 1
+				return true end}))
 				
 				SMODS.calculate_effect({
 					message = "+1",

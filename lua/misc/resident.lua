@@ -78,8 +78,6 @@ end
 slimeutils.upgrade_areas[#slimeutils.upgrade_areas+1] = "elle_resident_area"
 
 function ellejokers.create_UIBox_your_collection_residents()
-	local nodes = {}
-
 	local pool = {}
 	for k, v in pairs(G.P_CENTER_POOLS.elle_Resident) do
 		if not v.no_collection then pool[#pool+1] = v end
@@ -95,42 +93,32 @@ function ellejokers.create_UIBox_your_collection_residents()
 	end
 
 	G.your_collection = {}
-	for j = 1, cards_per_page do
-		G.your_collection[j] = CardArea(
-			G.ROOM.T.x + 0.2*G.ROOM.T.w/2,G.ROOM.T.h,
-			G.CARD_W,
-			G.CARD_H,
-			{card_limit = 1, type = 'title', highlight_limit = 0, collection = true}
-		)
-	end
 
-	for i = 1, #rows do
-		for j = 1, rows[i] do
+	-- for i = 1, #rows do
+	-- 	for j = 1, rows[i] do
 			
-		end
-	end
+	-- 	end
+	-- end
 
-	G.FUNCS.SMODS_card_collection_page = function(e)
-		if not e or not e.cycle_config then return end
-		
-		for j = 1, #G.your_collection do
-			for i = #G.your_collection[j].cards, 1, -1 do
-			local c = G.your_collection[j]:remove_card(G.your_collection[j].cards[i])
-			c:remove()
-			c = nil
-			end
-		end
-		
-		nodes = {}
+	-- Thanks to @sleepy.g11 for making this update when changing pages
+	local get_collection_page = function(page, parent)
+		EMPTY(G.your_collection)
+		local nodes = {}
 		for j = 1, #rows do
-			local rowNode = {n=G.UIT.R, config = {padding = 0.15}, nodes = {}}
+			local rowNode = {n=G.UIT.C, config = {padding = 0.15}, nodes = {}}
 			for i = 1, rows[j] do
-				local c = G.your_collection[(i-1)*2+j]
+				local c =  CardArea(
+					G.ROOM.T.x + 0.2*G.ROOM.T.w/2,G.ROOM.T.h,
+					G.CARD_W,
+					G.CARD_H,
+					{card_limit = 1, type = 'title', highlight_limit = 0, collection = true}
+				)
+				G.your_collection[#G.your_collection+1] = c
 				
-				local center = pool[(i-1)*2+j + (cards_per_page*(e.cycle_config.current_option - 1))]
+				local center = pool[(i-1)*2+j + (cards_per_page*(page - 1))]
 
 				local bio_lines = {}
-				local bio_title = ""
+				local bio_title = {}
 
 				if center then
 					local bio = {}
@@ -138,36 +126,61 @@ function ellejokers.create_UIBox_your_collection_residents()
 						localize({type="res_bio", set="elle_Resident", key=center.key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT})
 					end
 					for _, line in ipairs(bio) do bio_lines[#bio_lines+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
-					print(bio)
-					bio_title = localize({type = 'name_text', key = center.key, set = 'elle_Resident'})
+					
+					local bt = {}
+					localize({type = 'name', key = center.key, set = 'elle_Resident', nodes = bio_title})
+					for _, line in ipairs(bio_title) do bt[#bt+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
+					bio_title = bt
+
 
 					c:emplace(Card(c.T.x + c.T.w/2, c.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, center))
 				end
 
 				rowNode.nodes[#rowNode.nodes+1] =
-				{n = G.UIT.C, config = {padding = 0.1, r = 0.08, hover=true, shadow=true, colour = G.C.L_BLACK}, nodes = {
+				{n = G.UIT.R, config = {padding = 0.1, r = 0.08, hover=true, shadow=true, colour = G.C.L_BLACK}, nodes = {
 					{n = G.UIT.C, config = {padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
 						{n=G.UIT.O, config = {object = c}}
 					}},
 					{n = G.UIT.C, config = {minw=4, maxw=4, h=G.CARD_H, padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
-						{n = G.UIT.R, config = {}, nodes = { {n = G.UIT.T, config = {scale = 0.5, colour = G.C.UI.TEXT_LIGHT, text = bio_title}} }},
+						{n = G.UIT.R, config = {}, nodes = bio_title},
 						{n = G.UIT.R, config = {}, nodes = bio_lines},
 					}}
 				}}
 			end
 			nodes[#nodes+1] = rowNode
 		end
-
-		--print(e.cycle_config)
-		--G.OVERLAY_MENU:recalculate()
 		INIT_COLLECTION_CARD_ALERTS()
+		return UIBox({
+			definition = {
+				n = G.UIT.ROOT,
+				config = { colour = G.C.CLEAR },
+				nodes = nodes,
+			},
+			config = {
+				major = parent,
+				parent = parent,
+			},
+		})
 	end
 
-	G.FUNCS.SMODS_card_collection_page{ cycle_config = { current_option = 1 }}
-
+	G.FUNCS.SMODS_card_collection_page = function(e)
+		if not e or not e.cycle_config then return end
+		local parent = G.OVERLAY_MENU:get_UIE_by_ID("residents_content")
+		parent.config.object:remove()
+		parent.config.object = get_collection_page(e.cycle_config.current_option, parent)
+		parent.UIBox:recalculate()
+	end
 	return create_UIBox_generic_options({
 		back_func = G.ACTIVE_MOD_UI and "openModUI_"..G.ACTIVE_MOD_UI.id or 'your_collection', contents = {
-			{n=G.UIT.R, config={align = "cm", r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes=nodes},
+			{n=G.UIT.R, config={align = "cm", r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes={
+				{
+					n = G.UIT.O,
+					config = {
+						id = "residents_content",
+						object = get_collection_page(1)
+					}
+				}
+			}},
 			(cards_per_page < #pool) and {n=G.UIT.R, config={align = "cm"}, nodes={
 				create_option_cycle({options = options, w = 4.5, cycle_shoulders = true, opt_callback = 'SMODS_card_collection_page', current_option = 1, colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED, no_pips = true, focus_args = {snap_to = true, nav = 'wide'}})
 			}} or nil,
@@ -331,4 +344,18 @@ function localize(args, misc_cat)
 		end
 	end
 	return localize_ref(args, misc_cat)
+end
+
+
+-- makes residents' anim_timer count down properly so it can be used for animations
+if not love.update then function love.update(dt) end end
+local update_hook = love.update
+function love.update(dt)
+	update_hook(dt)
+
+	if G and G.elle_resident_area then
+		for i, v in ipairs(G.elle_resident_area.cards) do
+			if v.ability.extra.anim_timer then v.ability.extra.anim_timer = math.max(v.ability.extra.anim_timer-dt,0) end
+		end
+	end
 end

@@ -808,21 +808,17 @@ return {
 			},
 
 			undiscovered_elle_Resident={
-                name="Not Discovered",
-                text={
-                    "Use this resident in",
+				name="Not Discovered",
+				text={
+					"Use this resident in",
 					"an unseeded run to",
-                    "learn what it does",
-                },
-            },
-
-			undiscovered_elle_resident_bio={
-                name="Bio",
-                text={
-                    "Use this resident in an unseeded run",
-                    "to learn who they are",
-                },
-            },
+					"learn what it does",
+				},
+				res_bio = {
+					"Use this resident in an unseeded run",
+					"to learn who they are",
+				}
+			}
 		},
 		Tag = {
 			tag_elle_rebecca={
@@ -872,12 +868,12 @@ return {
 		},
 		Blind = {
 			bl_elle_awoken={
-                name="The Awoken",
-                text={
-                    "All Residents",
-                    "are debuffed",
-                },
-            },
+				name="The Awoken",
+				text={
+					"All Residents",
+					"are debuffed",
+				},
+			},
 
 			-- Blindside stuff
 			bl_elle_suggestion = {
@@ -897,6 +893,18 @@ return {
 			}
 		},
 		elle_Resident = {
+			elle_r_elle_jimbo = {
+				name = 'Jimbo',
+				text = {
+					"Once per round, use to",
+					"permanently give all",
+					"played cards {C:mult}+#1#{} Mult",
+					"{C:attention}#2#"
+				},
+				res_bio = {
+					"Joker Poker {C:attention}Balala"
+				}
+			},
 			elle_r_elle_chloe = {
 				name = 'Chloe',
 				text = {
@@ -910,7 +918,7 @@ return {
 				}
 			},
 			elle_r_elle_furry = {
-				name = "Furry",
+				name = "{st:attention}Chloe{C:attention} Furry",
 				text = {
 					"#1# a {C:attention}random{} held", -- #1# -> destroy/eat
 					"card before scoring",

@@ -186,6 +186,7 @@ local jokers = {
 	}
 }
 local residents = {
+	"jimbo",
 	"chloe",
 	"furry",
 	"cheshire",

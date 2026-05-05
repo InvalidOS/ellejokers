@@ -1,8 +1,22 @@
+function ellejokers.furry_sprite(card)
+	if not slimeutils.card_obscured(card) then
+		local y = card.children.center.sprite_pos.y
+
+		local x = 0
+
+		if ellejokers.mod_data.config.nsfw then
+			x = card.ability.extra.anim_timer and card.ability.extra.anim_timer>0 and 6 or 1+math.min(card.ability.extra.eaten,4)
+		end
+
+		card.children.center:set_sprite_pos({x = x, y = y})
+	end
+end
+
 local furry = ellejokers.Resident {
 	key = 'furry',
 	atlas = 'furrychesh',
 	pos = { x = 0, y = 0 },
-	config = { extra = {mult_mod = 2, mult = 0, eaten = 0, count = 0, req = 10} },
+	config = { extra = {mult_mod = 2, mult = 0, eaten = 0, count = 0, req = 10, anim_timer = 0} },
 	loc_vars = function(self, info_queue, card) return { vars = {
 		localize(ellejokers.mod_data.config.nsfw and "elle_furry_eat" or "elle_furry_destroy"),
 		card.ability.extra.mult_mod,
@@ -28,16 +42,19 @@ local furry = ellejokers.Resident {
 			xmult = 1+(card.ability.extra.mult/card.ability.extra.mult_mod*G.P_CENTERS.elle_r_elle_cheshire.config.extra.xmult_mod),
 			eaten = card.ability.extra.eaten
 		} end
-	}
+	},
+	update = function(self, card, dt) ellejokers.furry_sprite(card) end,
 }
 
 furry.calculate = function(self, card, context)
 	if context.before and #G.hand.cards > 0 then
 		local target = pseudorandom_element(G.hand.cards,"elle_furry_eat")
 		SMODS.destroy_cards(target)
-		card.ability.extra.eaten = card.ability.extra.eaten + 1
-		card.ability.extra.count = card.ability.extra.count + 1
-		
+		G.E_MANAGER:add_event(Event({func=function()
+			card.ability.extra.eaten = card.ability.extra.eaten + 1
+			card.ability.extra.count = card.ability.extra.count + 1
+		return true end}))
+
 		return {
 			message = "+1",
 			sound = "slice1"
@@ -54,7 +71,15 @@ furry.calculate = function(self, card, context)
 		local mod = card.ability.extra.eaten * card.ability.extra.mult_mod
 		
 		card.ability.extra.mult = card.ability.extra.mult + mod
-		card.ability.extra.eaten = 0
+		
+		G.E_MANAGER:add_event(Event({func=function()
+			card.ability.extra.eaten = 0
+
+			if ellejokers.mod_data.config.nsfw then
+				card.ability.extra.anim_timer = 0.5
+				--play_sound("elle_burp")
+			end
+		return true end}))
 
 		return {
 			message = localize { type = 'variable', key = 'a_mult', vars = { mod } },

@@ -36,7 +36,7 @@ local bubble_click = function(bubble)
 		target:juice_up()
 
 		SMODS.calculate_effect({
-			message = localize { type = 'variable', key = 'a_mult', vars = { bubble.mult } },
+			message = localize("k_upgrade_ex"),
 			colour = HEX("c3543a"),
 			instant = true
 		},target)

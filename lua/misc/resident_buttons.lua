@@ -19,7 +19,7 @@ function G.FUNCS.elle_resident_button_func(e)
 	--local button = e.config.button_thingy
 	local yes = e.config.button_thingy:can_use(e.config.ref_table)
 
-	e.config.colour = yes and (e.config.button_thingy.colour or G.C.BLUE) or G.C.UI.BACKGROUND_INACTIVE
+	e.config.colour = yes and (e.config.button_thingy.colour or G.C.RED) or G.C.UI.BACKGROUND_INACTIVE
 	e.config.button = yes and 'elle_resident_button' or nil
 end
 
@@ -53,7 +53,7 @@ local function create_resident_buttons_ui(card)
 				},
 				nodes = {
 					{ n = G.UIT.C, nodes = {
-						{ n = G.UIT.T, config = { text = type(bTable.text) == "function" and bTable:text(card) or bTable.text, scale = 0.3*bTable.scale, } }
+						{ n = G.UIT.T, config = { text = type(bTable.text or localize("b_use")) == "function" and bTable:text(card) or bTable.text or localize("b_use"), scale = 0.3*bTable.scale, } }
 					}},
 					{ n = G.UIT.C }
 				}
