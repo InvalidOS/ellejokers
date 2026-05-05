@@ -87,12 +87,12 @@ function ellejokers.create_UIBox_your_collection_residents()
 
 	local rows = {2,2}
 
-    local cards_per_page = 4
+	local cards_per_page = 4
 
 	local options = {}
-    for i = 1, math.ceil(#pool/cards_per_page) do
-        table.insert(options, localize('k_page')..' '..tostring(i)..'/'..tostring(math.ceil(#pool/cards_per_page)))
-    end
+	for i = 1, math.ceil(#pool/cards_per_page) do
+		table.insert(options, localize('k_page')..' '..tostring(i)..'/'..tostring(math.ceil(#pool/cards_per_page)))
+	end
 
 	G.your_collection = {}
 	for j = 1, cards_per_page do
@@ -158,29 +158,20 @@ function ellejokers.create_UIBox_your_collection_residents()
 			nodes[#nodes+1] = rowNode
 		end
 
-		--[[for j = 1, #rows do
-			for i = 1, rows[j] do
-			local center = pool[i+row_totals[j] + (cards_per_page*(e.cycle_config.current_option - 1))]
-			if not center then break end
-			local card = Card(G.your_collection[j].T.x + G.your_collection[j].T.w/2, G.your_collection[j].T.y, G.CARD_W*args.card_scale, G.CARD_H*args.card_scale, G.P_CARDS.empty, (args.center and G.P_CENTERS[args.center]) or center)
-			if args.modify_card then args.modify_card(card, center, i, j) end
-			if not args.no_materialize then card:start_materialize(nil, i>1 or j>1) end
-			G.your_collection[j]:emplace(card)
-			end
-		end]]
-		
+		--print(e.cycle_config)
+		--G.OVERLAY_MENU:recalculate()
 		INIT_COLLECTION_CARD_ALERTS()
 	end
 
 	G.FUNCS.SMODS_card_collection_page{ cycle_config = { current_option = 1 }}
 
 	return create_UIBox_generic_options({
-        back_func = G.ACTIVE_MOD_UI and "openModUI_"..G.ACTIVE_MOD_UI.id or 'your_collection', contents = {
-          {n=G.UIT.R, config={align = "cm", r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes=nodes},
-          (cards_per_page < #pool) and {n=G.UIT.R, config={align = "cm"}, nodes={
-            create_option_cycle({options = options, w = 4.5, cycle_shoulders = true, opt_callback = 'SMODS_card_collection_page', current_option = 1, colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED, no_pips = true, focus_args = {snap_to = true, nav = 'wide'}})
-          }} or nil,
-      }})
+		back_func = G.ACTIVE_MOD_UI and "openModUI_"..G.ACTIVE_MOD_UI.id or 'your_collection', contents = {
+			{n=G.UIT.R, config={align = "cm", r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes=nodes},
+			(cards_per_page < #pool) and {n=G.UIT.R, config={align = "cm"}, nodes={
+				create_option_cycle({options = options, w = 4.5, cycle_shoulders = true, opt_callback = 'SMODS_card_collection_page', current_option = 1, colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED, no_pips = true, focus_args = {snap_to = true, nav = 'wide'}})
+			}} or nil,
+	}})
 end
 
 --function G.FUNCS.elle_resident_collection_bio(e) end
