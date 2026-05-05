@@ -906,7 +906,7 @@ return {
 				},
 				res_bio = {
 					"Test Bio Description",
-					"Hi chat!"
+					"Hi {C:attention}chat{}!"
 				}
 			},
 			elle_r_elle_furry = {

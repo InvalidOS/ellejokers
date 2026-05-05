@@ -105,26 +105,9 @@ function ellejokers.create_UIBox_your_collection_residents()
 	end
 
 	for i = 1, #rows do
-		local rowNode = {n=G.UIT.R, config = {padding = 0.15}, nodes = {}}
 		for j = 1, rows[i] do
-			local c = G.your_collection[(i-1)*2+j]
-
-			--local bio = {}
-			--localize({type="res_bio",set="elle_Resident",key="elle_r_elle_chloe",nodes=bio})
-
-			rowNode.nodes[#rowNode.nodes+1] =
-			{n = G.UIT.C, config = {padding = 0.1, r = 0.08, hover=true, shadow=true, colour = G.C.L_BLACK}, nodes = {
-				{n = G.UIT.C, config = {padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
-					{n=G.UIT.O, config = {object = c}}
-				}},
-				{n = G.UIT.C, config = {minw=4, maxw=4, h=G.CARD_H, padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
-					--{n = G.UIT.T, config = {scale = 0.3, colour = G.C.WHITE}}
-					--{n=G.UIT.O, config = {func = "elle_resident_collection_bio", collection = c, object = bio}}
-				
-				}}
-			}}
+			
 		end
-		nodes[#nodes+1] = rowNode
 	end
 
 	G.FUNCS.SMODS_card_collection_page = function(e)
@@ -138,14 +121,41 @@ function ellejokers.create_UIBox_your_collection_residents()
 			end
 		end
 		
+		nodes = {}
 		for j = 1, #rows do
+			local rowNode = {n=G.UIT.R, config = {padding = 0.15}, nodes = {}}
 			for i = 1, rows[j] do
-				local col = G.your_collection[(i-1)*2+j]
+				local c = G.your_collection[(i-1)*2+j]
+				
 				local center = pool[(i-1)*2+j + (cards_per_page*(e.cycle_config.current_option - 1))]
-				if not center then break end
-				local card = Card(col.T.x + col.T.w/2, col.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, center)
-				col:emplace(card)
+
+				local bio_lines = {}
+				local bio_title = ""
+
+				if center then
+					local bio = {}
+					if G.localization.descriptions.elle_Resident[center.key].res_bio then
+						localize({type="res_bio", set="elle_Resident", key=center.key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT})
+					end
+					for _, line in ipairs(bio) do bio_lines[#bio_lines+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
+					print(bio)
+					bio_title = localize({type = 'name_text', key = center.key, set = 'elle_Resident'})
+
+					c:emplace(Card(c.T.x + c.T.w/2, c.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, center))
+				end
+
+				rowNode.nodes[#rowNode.nodes+1] =
+				{n = G.UIT.C, config = {padding = 0.1, r = 0.08, hover=true, shadow=true, colour = G.C.L_BLACK}, nodes = {
+					{n = G.UIT.C, config = {padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
+						{n=G.UIT.O, config = {object = c}}
+					}},
+					{n = G.UIT.C, config = {minw=4, maxw=4, h=G.CARD_H, padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
+						{n = G.UIT.R, config = {}, nodes = { {n = G.UIT.T, config = {scale = 0.5, colour = G.C.UI.TEXT_LIGHT, text = bio_title}} }},
+						{n = G.UIT.R, config = {}, nodes = bio_lines},
+					}}
+				}}
 			end
+			nodes[#nodes+1] = rowNode
 		end
 
 		--[[for j = 1, #rows do
