@@ -1,21 +1,21 @@
 G.P_CENTER_POOLS["elle_Resident"] = G.P_CENTER_POOLS["elle_Resident"] or {}
 
 ellejokers.Resident = SMODS.Center:extend {
-    unlocked = true,
-    discovered = false,
-    pos = { x = 0, y = 0 },
-    atlas = "elle_residents",
-    cost = 8,
-    set = 'elle_Resident',
-    config = {},
-    class_prefix = 'elle_r',
-    required_params = {
-        'key',
-    },
+	unlocked = true,
+	discovered = false,
+	pos = { x = 0, y = 0 },
+	atlas = "elle_residents",
+	cost = 8,
+	set = 'elle_Resident',
+	config = {},
+	class_prefix = 'elle_r',
+	required_params = {
+		'key',
+	},
 	set_card_type_badge = function(self, card, badges)
 		badges[#badges + 1] = create_badge(self.resident_visitor and localize('k_elle_visitor') or localize('k_elle_resident'),
-            self.resident_colour or get_type_colour(card.config.center or card.config, card), G.C.WHITE,
-            1.2)
+			self.resident_colour or get_type_colour(card.config.center or card.config, card), G.C.WHITE,
+			1.2)
 	end
 }
 G.C.SET.elle_Resident = HEX("ff53a9")
@@ -45,12 +45,12 @@ SMODS.UndiscoveredSprite{
 
 local gsr = Game.start_run
 function Game:start_run(args, ...)
-    gsr(self, args, ...)
+	gsr(self, args, ...)
 
 	local cons_t = G.consumeables.T
 
-    self.elle_resident_area.T.x = cons_t.x + cons_t.w - self.elle_resident_area.T.w
-    self.elle_resident_area.T.y = cons_t.y + 3
+	self.elle_resident_area.T.x = cons_t.x + cons_t.w - self.elle_resident_area.T.w
+	self.elle_resident_area.T.y = cons_t.y + 3
 
 	-- Fuckass MP compat
 	if SMODS.find_mod("Multiplayer") and MP and MP.shared then
@@ -78,11 +78,102 @@ end
 slimeutils.upgrade_areas[#slimeutils.upgrade_areas+1] = "elle_resident_area"
 
 function ellejokers.create_UIBox_your_collection_residents()
-	return SMODS.card_collection_UIBox(G.P_CENTER_POOLS.elle_Resident, {1}, {
-		no_materialize = true,
-		h_mod = 0.95,
-	})
+	local nodes = {}
+
+	local pool = {}
+	for k, v in pairs(G.P_CENTER_POOLS.elle_Resident) do
+		if not v.no_collection then pool[#pool+1] = v end
+	end
+
+	local rows = {2,2}
+
+    local cards_per_page = 4
+
+	local options = {}
+    for i = 1, math.ceil(#pool/cards_per_page) do
+        table.insert(options, localize('k_page')..' '..tostring(i)..'/'..tostring(math.ceil(#pool/cards_per_page)))
+    end
+
+	G.your_collection = {}
+	for j = 1, cards_per_page do
+		G.your_collection[j] = CardArea(
+			G.ROOM.T.x + 0.2*G.ROOM.T.w/2,G.ROOM.T.h,
+			G.CARD_W,
+			G.CARD_H,
+			{card_limit = 1, type = 'title', highlight_limit = 0, collection = true}
+		)
+	end
+
+	for i = 1, #rows do
+		local rowNode = {n=G.UIT.R, config = {padding = 0.15}, nodes = {}}
+		for j = 1, rows[i] do
+			local c = G.your_collection[(i-1)*2+j]
+
+			--local bio = {}
+			--localize({type="res_bio",set="elle_Resident",key="elle_r_elle_chloe",nodes=bio})
+
+			rowNode.nodes[#rowNode.nodes+1] =
+			{n = G.UIT.C, config = {padding = 0.1, r = 0.08, hover=true, shadow=true, colour = G.C.L_BLACK}, nodes = {
+				{n = G.UIT.C, config = {padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
+					{n=G.UIT.O, config = {object = c}}
+				}},
+				{n = G.UIT.C, config = {minw=4, maxw=4, h=G.CARD_H, padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
+					--{n = G.UIT.T, config = {scale = 0.3, colour = G.C.WHITE}}
+					--{n=G.UIT.O, config = {func = "elle_resident_collection_bio", collection = c, object = bio}}
+				
+				}}
+			}}
+		end
+		nodes[#nodes+1] = rowNode
+	end
+
+	G.FUNCS.SMODS_card_collection_page = function(e)
+		if not e or not e.cycle_config then return end
+		
+		for j = 1, #G.your_collection do
+			for i = #G.your_collection[j].cards, 1, -1 do
+			local c = G.your_collection[j]:remove_card(G.your_collection[j].cards[i])
+			c:remove()
+			c = nil
+			end
+		end
+		
+		for j = 1, #rows do
+			for i = 1, rows[j] do
+				local col = G.your_collection[(i-1)*2+j]
+				local center = pool[(i-1)*2+j + (cards_per_page*(e.cycle_config.current_option - 1))]
+				if not center then break end
+				local card = Card(col.T.x + col.T.w/2, col.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, center)
+				col:emplace(card)
+			end
+		end
+
+		--[[for j = 1, #rows do
+			for i = 1, rows[j] do
+			local center = pool[i+row_totals[j] + (cards_per_page*(e.cycle_config.current_option - 1))]
+			if not center then break end
+			local card = Card(G.your_collection[j].T.x + G.your_collection[j].T.w/2, G.your_collection[j].T.y, G.CARD_W*args.card_scale, G.CARD_H*args.card_scale, G.P_CARDS.empty, (args.center and G.P_CENTERS[args.center]) or center)
+			if args.modify_card then args.modify_card(card, center, i, j) end
+			if not args.no_materialize then card:start_materialize(nil, i>1 or j>1) end
+			G.your_collection[j]:emplace(card)
+			end
+		end]]
+		
+		INIT_COLLECTION_CARD_ALERTS()
+	end
+
+	G.FUNCS.SMODS_card_collection_page{ cycle_config = { current_option = 1 }}
+
+	return create_UIBox_generic_options({
+        back_func = G.ACTIVE_MOD_UI and "openModUI_"..G.ACTIVE_MOD_UI.id or 'your_collection', contents = {
+          {n=G.UIT.R, config={align = "cm", r = 0.1, colour = G.C.BLACK, emboss = 0.05}, nodes=nodes},
+          (cards_per_page < #pool) and {n=G.UIT.R, config={align = "cm"}, nodes={
+            create_option_cycle({options = options, w = 4.5, cycle_shoulders = true, opt_callback = 'SMODS_card_collection_page', current_option = 1, colour = G.ACTIVE_MOD_UI and (G.ACTIVE_MOD_UI.ui_config or {}).collection_option_cycle_colour or G.C.RED, no_pips = true, focus_args = {snap_to = true, nav = 'wide'}})
+          }} or nil,
+      }})
 end
+
+--function G.FUNCS.elle_resident_collection_bio(e) end
 
 function G.FUNCS.elle_your_collection_residents(e)
 	G.SETTINGS.paused = true
@@ -202,4 +293,41 @@ function CardArea:emplace(card,...)
 	end
 
 	cae(self, card, ...)
+end
+
+-- both these hooks were given by @nh6574
+-- https://github.com/nh6574/JoyousSpring/blob/5ef54fa49bbb5a4450c78294fb7b2854134f5d44/src/card_ui.lua
+
+local init_localization_ref = init_localization
+function init_localization()
+	init_localization_ref()
+
+	for _, center in pairs(G.localization.descriptions.elle_Resident) do
+		if center.res_bio then
+			center.res_bio_parsed = {}
+			for _, line in ipairs(center.res_bio) do
+				center.res_bio_parsed[#center.res_bio_parsed + 1] = loc_parse_string(line)
+			end
+		end
+	end
+end
+
+local localize_ref = localize
+function localize(args, misc_cat)
+	if args and not (type(args) == 'table') then
+		return localize_ref(args, misc_cat)
+	end
+
+	local loc_target = nil
+	if args and (args.type == 'res_bio') then
+		loc_target = G.localization.descriptions[(args.set or args.node.config.center.set)]
+			[args.key or args.node.config.center.key]
+
+		if loc_target then
+			for _, line in ipairs(loc_target[args.type .. "_parsed"]) do
+				args.nodes[#args.nodes + 1] = SMODS.localize_box(line, args)
+			end
+		end
+	end
+	return localize_ref(args, misc_cat)
 end

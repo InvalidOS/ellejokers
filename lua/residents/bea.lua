@@ -37,7 +37,7 @@ local bubble_click = function(bubble)
 
 		SMODS.calculate_effect({
 			message = localize { type = 'variable', key = 'a_mult', vars = { bubble.mult } },
-			colour = G.C.MULT,
+			colour = HEX("c3543a"),
 			instant = true
 		},target)
 	end

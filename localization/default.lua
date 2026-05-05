@@ -903,6 +903,10 @@ return {
 					"Gain {C:chips}+#1#{} Chips every",
 					"time you {C:attention}discard{} a card.",
 					"{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"
+				},
+				res_bio = {
+					"Test Bio Description",
+					"Hi chat!"
 				}
 			},
 			elle_r_elle_furry = {
