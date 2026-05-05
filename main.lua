@@ -296,6 +296,12 @@ SMODS.Atlas {
 	py = 95
 }
 SMODS.Atlas {
+	key = "booster",
+	path = "booster.png",
+	px = 71,
+	py = 95
+}
+SMODS.Atlas {
 	key = "censor_default",
 	path = "joker/sophieold/default.png",
 	px = 71,

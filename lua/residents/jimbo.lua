@@ -8,11 +8,10 @@ ellejokers.Resident {
 			localize(card.ability.extra.used and "elle_active_used" or "elle_active_available")
 		}}
 	end,
-	in_pool = function (self, args) return false end,
 	calculate = function(self, card, context)
 		if context.setting_blind then
 			juice_card_until(card,function(card)
-				return card.ability.extra.active == false and G.STATE ~= G.STATES.ROUND_EVAL
+				return not card.ability.extra.active and G.STATE ~= G.STATES.ROUND_EVAL
 			end)
 		end
 		

@@ -16,8 +16,22 @@ ellejokers.Resident {
 	in_pool = function (self, args) return false end,
 	elle_tail = { x = 7, y = 1 },
 	calculate = function(self, card, context)
+		if card.ability.extra.active and context.setting_blind then
+				print(G.STATE)
+				juice_card_until(card,function(card)
+					return card.ability.extra.active
+				end)
+		end
+		
 		if context.joker_main then
-			card.ability.extra.active = true
+			if not card.ability.extra.active then
+				G.E_MANAGER:add_event(Event({func = function()
+					card.ability.extra.active = true
+					juice_card_until(card,function(card)
+						return card.ability.extra.active and G.STATE ~= G.STATES.ROUND_EVAL
+					end)
+				return true end}))
+			end
 			
 			return {
 				mult = card.ability.extra.xmult ~= 1 and card.ability.extra.xmult or nil,
