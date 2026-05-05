@@ -1,4 +1,4 @@
-if not (next(SMODS.find_mod("MoreFluff")) and FLUFF.is_rewrite) then return end -- Only continue if playing with the MoreFluff rewrite
+if not FLUFF.is_rewrite then return end -- Only continue if playing with the MoreFluff rewrite
 
 FLUFF.Colour({
 	key = "jessblue",

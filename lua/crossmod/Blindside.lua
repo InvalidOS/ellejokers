@@ -1,6 +1,3 @@
-if not next(SMODS.find_mod("Blindside")) then return end -- Only continue if playing with Blindside
-print("ellejokers blindside time!!")
-
 SMODS.Atlas{
 	key = "jokerenemy",
 	path = "blindside/jokers.png",
@@ -41,7 +38,7 @@ BLINDSIDE.Joker{
 	end
 }
 
-BLINDSIDE.Joker{
+--[[BLINDSIDE.Joker{
 	key = 'chloe',
 	atlas = 'elle_jokerenemy',
 	pos = {x=0, y=1},
@@ -61,4 +58,4 @@ BLINDSIDE.Joker{
 			end
 		end
 	end
-}
+}]]

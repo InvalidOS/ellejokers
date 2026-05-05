@@ -89,8 +89,6 @@ local lib = {
 	"challenges",
 	"popup_shop",
 	"enhancements",
-	"blindside",
-	"morefluff",
 	"achievements",
 	"config",
 	"decks",
@@ -192,6 +190,10 @@ local residents = {
 	"cheshire",
 	"rebecca",
 	"bea"
+}
+
+local crossmod = {
+	"MoreFluff"
 }
 
 --#region Atlases
@@ -471,6 +473,10 @@ end
 
 for _, v in ipairs(residents) do
 	assert(SMODS.load_file("lua/residents/"..v..".lua"))()
+end
+
+for _, v in ipairs(crossmod) do
+	if next(SMODS.find_mod(v)) then assert(SMODS.load_file("lua/residents/"..v..".lua"))() end
 end
 
 SMODS.current_mod.calculate = function(self,context)
