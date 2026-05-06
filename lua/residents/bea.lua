@@ -4,7 +4,7 @@ local bubbles = {}
 ellejokers.Resident {
 	key = 'bea',
 	pos = { x = 0, y = 1 },
-	config = { extra = { mult_mod = 2 } },
+	config = { extra = { mult_mod = 3 } },
 	loc_vars = function(self, info_queue, card)
 		return {vars = { card.ability.extra.mult_mod }}
 	end,
@@ -17,6 +17,7 @@ ellejokers.Resident {
 					return true
 				end
 			}))
+			return true
 		end
 		if context.final_scoring_step then
 			G.E_MANAGER:add_event(Event({func=function()

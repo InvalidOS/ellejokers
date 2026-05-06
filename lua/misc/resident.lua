@@ -14,7 +14,7 @@ ellejokers.Resident = SMODS.Center:extend {
 	},
 	set_card_type_badge = function(self, card, badges)
 		badges[#badges + 1] = create_badge(self.resident_visitor and localize('k_elle_visitor') or localize('k_elle_resident'),
-			self.resident_colour or get_type_colour(card.config.center or card.config, card), G.C.WHITE,
+			not slimeutils.card_obscured(card) and self.resident_colour or get_type_colour(card.config.center or card.config, card), G.C.WHITE,
 			1.2)
 	end
 }
@@ -121,19 +121,24 @@ function ellejokers.create_UIBox_your_collection_residents()
 				local bio_title = {}
 
 				if center then
+					local card = Card(c.T.x + c.T.w/2, c.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, center)
+					
+					local bio_vars = {}
+					local c_key = center.discovered and (center.bio_key and center.bio_key(center,card,bio_vars) or center.key) or "undiscovered"
+
+
 					local bio = {}
-					if G.localization.descriptions.elle_Resident[center.key].res_bio then
-						localize({type="res_bio", set="elle_Resident", key=center.key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT})
+					if G.localization.descriptions.elle_Resident[c_key] and G.localization.descriptions.elle_Resident[c_key].res_bio then
+						localize({type="res_bio", set="elle_Resident", key=c_key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT, vars = bio_vars})
 					end
 					for _, line in ipairs(bio) do bio_lines[#bio_lines+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
 					
 					local bt = {}
-					localize({type = 'name', key = center.key, set = 'elle_Resident', nodes = bio_title})
+					localize({type = 'name', key = c_key, set = 'elle_Resident', nodes = bio_title})
 					for _, line in ipairs(bio_title) do bt[#bt+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
 					bio_title = bt
 
-
-					c:emplace(Card(c.T.x + c.T.w/2, c.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, center))
+					c:emplace(card)
 				end
 
 				rowNode.nodes[#rowNode.nodes+1] =
@@ -202,7 +207,7 @@ function ellejokers.reset_game_globals.residents(run_start)
 	end
 end
 
-local function do_replace(card)
+function ellejokers.do_replace(card)
 	local a = #G.elle_resident_area.cards + (1 + card.ability.extra_slots_used) <= G.elle_resident_area.config.card_limit + card.ability.card_limit
 	return card.ability.set == 'elle_Resident' and (#G.elle_resident_area.highlighted == 1 or (#G.elle_resident_area.cards == 1 and not a))
 end
@@ -211,7 +216,7 @@ local cfbshook = G.FUNCS.check_for_buy_space
 function G.FUNCS.check_for_buy_space(card)
 	if card.ability.set == 'elle_Resident' then
 		-- Force allow if replacing
-		if do_replace(card) then return true end
+		if ellejokers.do_replace(card) then return true end
 
 		local a = #G.elle_resident_area.cards + (1 + card.ability.extra_slots_used) <= G.elle_resident_area.config.card_limit + card.ability.card_limit
 		if not a then alert_no_space(card, G.elle_resident_area) end
@@ -223,7 +228,7 @@ end
 local cbhook = G.FUNCS.can_buy
 function G.FUNCS.can_buy(e)
 	local card = e.config.ref_table
-	local res = do_replace(card)
+	local res = ellejokers.do_replace(card)
 	
 	-- Update Box
 	local txt = localize(res and "elle_resident_replace" or "b_buy")
@@ -247,6 +252,34 @@ function G.FUNCS.can_buy(e)
 	else cbhook(e) end
 end
 
+local cschook = G.FUNCS.can_select_card
+function G.FUNCS.can_select_card(e)
+	local card = e.config.ref_table
+	local res = ellejokers.do_replace(card)
+
+	-- Update Box
+	local txt = localize(res and "elle_resident_replace" or "b_select")
+	if e.children[1].config.text ~= txt and card.highlighted then
+		print(e.children[1].config.text)
+		print(txt)
+		-- Update text
+		e.children[1].config.text = txt
+		e.children[1].config.text = e.children[1].config.text
+		e.children[1].config.text_drawable = nil
+		e.children[1]:update_text()
+
+		-- Temporarily set func to nil to prevent crash
+		e.config.func = nil
+		e.UIBox:recalculate()
+		e.config.func = "can_select_card"
+	end
+
+	if res then
+		e.config.colour = G.C.PURPLE
+		e.config.button = 'elle_replace_from_booster'
+	else cschook(e) end
+end
+
 function G.FUNCS.elle_replace_from_shop(e)
 	G.E_MANAGER:add_event(Event({func = function()
 		SMODS.destroy_cards(G.elle_resident_area.highlighted[1] or G.elle_resident_area.cards[1])
@@ -254,6 +287,16 @@ function G.FUNCS.elle_replace_from_shop(e)
 
 	G.E_MANAGER:add_event(Event({func = function()
 		G.FUNCS.buy_from_shop(e)
+	return true end}))
+end
+
+function G.FUNCS.elle_replace_from_booster(e)
+	G.E_MANAGER:add_event(Event({func = function()
+		SMODS.destroy_cards(G.elle_resident_area.highlighted[1] or G.elle_resident_area.cards[1])
+	return true end}))
+
+	G.E_MANAGER:add_event(Event({func = function()
+		G.FUNCS.use_card(e)
 	return true end}))
 end
 
@@ -357,5 +400,20 @@ function love.update(dt)
 		for i, v in ipairs(G.elle_resident_area.cards) do
 			if v.ability.extra.anim_timer then v.ability.extra.anim_timer = math.max(v.ability.extra.anim_timer-dt,0) end
 		end
+	end
+end
+
+if SMODS.UndiscoveredCompat then
+	SMODS.UndiscoveredCompat.elle_Resident = true
+else
+	-- i hate that i have to do this
+	local gcui_hook = generate_card_ui
+	function generate_card_ui(_c, full_UI_table, specific_vars, card_type, badges, hide_desc, main_start, main_end, card)
+		if _c.set == "elle_Resident" and not G.P_CENTERS[_c.key].discovered then
+			hide_desc = hide_desc or card.area.config.collection
+			card_type = "Undiscovered"
+		end
+	
+		return gcui_hook(_c, full_UI_table, specific_vars, card_type, badges, hide_desc, main_start, main_end, card)
 	end
 end

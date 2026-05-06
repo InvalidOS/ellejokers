@@ -91,11 +91,11 @@ local lib = {
 	"enhancements",
 	"achievements",
 	"config",
-	"decks",
 	"tv_time",
 	"blinds",
 	"resident",
-	"resident_buttons"
+	"resident_buttons",
+	"booster"
 }
 
 --		[[ Joker List ]]
@@ -188,12 +188,18 @@ local residents = {
 	"chloe",
 	"furry",
 	"cheshire",
+	"sarah",
+	"mint",
 	"rebecca",
 	"bea"
 }
 
 local crossmod = {
 	"MoreFluff"
+}
+local decks = {
+	"mall",
+	"tv"
 }
 
 --#region Atlases
@@ -417,6 +423,7 @@ end
 -- Text Colours
 loc_colour('red')
 G.ARGS.LOC_COLOURS.elle = HEX('FF53A9')
+G.ARGS.LOC_COLOURS.elle_mint = HEX('65e6d4')
 
 -- Badges
 elle_badges = {
@@ -479,6 +486,10 @@ end
 
 for _, v in ipairs(residents) do
 	assert(SMODS.load_file("lua/residents/"..v..".lua"))()
+end
+
+for _, v in ipairs(decks) do
+	assert(SMODS.load_file("lua/decks/"..v..".lua"))()
 end
 
 for _, v in ipairs(crossmod) do

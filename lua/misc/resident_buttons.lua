@@ -81,7 +81,7 @@ end
 
 local highlight_ref = Card.highlight
 function Card.highlight(self, is_highlighted)
-	if is_highlighted and self.config.center.resident_buttons then
+	if is_highlighted and self.config.center.resident_buttons and self.area == G.elle_resident_area then
 		self.children.elle_resident_buttons = create_resident_buttons_ui(self)
 	elseif self.children.elle_resident_buttons then
 		self.children.elle_resident_buttons:remove()

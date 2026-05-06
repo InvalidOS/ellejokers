@@ -76,7 +76,7 @@ SMODS.Voucher {
 }
 
 SMODS.Voucher {
-	key = 'slumber',
+	key = 'sleepshopper',
 	atlas = "vouchers",
 	pos = { x = 0, y = 1 },
 	config = { extra = { rate = 4 } },

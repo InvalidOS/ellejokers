@@ -19,7 +19,7 @@ ellejokers.Resident {
 		if card.ability.extra.active and context.setting_blind then
 				print(G.STATE)
 				juice_card_until(card,function(card)
-					return card.ability.extra.active
+					return card.ability.extra.active and G.STATE ~= G.STATES.ROUND_EVAL
 				end)
 		end
 		

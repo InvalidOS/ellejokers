@@ -807,16 +807,22 @@ return {
 				}
 			},
 
-			undiscovered_elle_Resident={
+			p_elle_resident={
+				name="Resident Pack",
+				text={
+					"Choose {C:attention}#1#{} of up to",
+					"{C:attention}#2#{C:elle} Resident{} cards",
+				},
+				group_name = "Resident Pack"
+			},
+
+			undiscovered_elle_resident = {
 				name="Not Discovered",
 				text={
-					"Use this resident in",
-					"an unseeded run to",
-					"learn what it does",
-				},
-				res_bio = {
-					"Use this resident in an unseeded run",
-					"to learn who they are",
+					"",
+					"this resident in an",
+					"unseeded run to",
+					"learn what they do",
 				}
 			}
 		},
@@ -851,6 +857,13 @@ return {
 					"{C:legendary}Legendary{} Jokers can",
 					"appear in {C:attention}Shop"
 				}
+			},
+			v_elle_sleepshopper = {
+				name = "Sleepshopper",
+				text = {
+					"{C:elle}Resident{} cards can",
+					"appear in shop"
+				}
 			}
 		},
 		Back={
@@ -863,6 +876,14 @@ return {
 					"at the start of Blinds",
 					"{C:red}X#3#{} Blind size on hit",
 					"{C:inactive}(Max {C:attention}#4#{C:inactive} per round)"
+				}
+			},
+			b_elle_mall={
+				name="Mall Deck",
+				text={
+					"{C:red}#1#{} Joker Slots",
+					"Start with a random {C:elle}Resident",
+					"{C:elle}Residents{} retrigger once"
 				}
 			}
 		},
@@ -893,6 +914,15 @@ return {
 			}
 		},
 		elle_Resident = {
+			-- Bio stuff :)
+			undiscovered = {
+				name="Not Discovered",
+				res_bio = {
+					"Purchase or use this resident in",
+					"an unseeded run to learn more",
+				}
+			},
+
 			elle_r_elle_jimbo = {
 				name = 'Jimbo',
 				text = {
@@ -902,7 +932,14 @@ return {
 					"{C:attention}#2#"
 				},
 				res_bio = {
-					"Joker Poker {C:attention}Balala"
+					"This familiar {C:attention}Joker{} heard about {C:elle}The Mall",
+					"through an online forum run by people who'd",
+					"woken up in {C:elle}The Mall{} before. The following",
+					"night, he woke up there himself!",
+					" ",
+					"There, he showed {C:attention}Balatro{} to the various",
+					"{C:elle}Residents{} of {C:elle}The Mall{}, allowing them to join",
+					"in on the fun themselves."
 				}
 			},
 			elle_r_elle_chloe = {
@@ -939,6 +976,45 @@ return {
 					"card #3# {C:inactive}[#4#]", -- #3# -> destroyed/eaten
 					"{C:inactive}(Currently {X:mult,C:white}X#5#{C:inactive} Mult)",
 					"{C:attention}#6#"
+				}
+			},
+			elle_r_elle_sarah = {
+				name = 'Sarah',
+				res_bio = {
+					""
+				}
+			},
+			elle_r_elle_mint = {
+				name = '{st:purple}Sarah{C:elle_mint} Mint',
+				res_bio = {
+					"When {V:1}you{} start forgetting everything, at",
+					"what point do {V:2}you{} stop being {V:3}yourself{}?",
+					"When do {V:4}you{} start noticing that {V:5}you're",
+					"forgetting? At what point do {V:6}you{} forget",
+					"that there was anything to forget?"
+				}
+			},
+			elle_r_elle_mint_alt = {
+				name = '{st:purple}Sarah{C:elle_mint} Mint',
+				res_bio = {
+					"When {V:1}you{} start forgetting everything, at",
+					"what point do {V:2}you{} stop being {V:3}yourself{}?",
+					"When do {V:4}you{} start noticing that {V:5}you're",
+					"forgetting? At what point do {V:6}you{} forget",
+					"that there was anything to forget?",
+					" ",
+					"{C:purple}A very fitting end if I say so myself,",
+					"{C:purple}easily my finest work. She's happier",
+					"{C:purple}like this. I gave her the name too.",
+					" ",
+					"{C:purple}It suits her."
+				}
+			},
+			elle_r_elle_spearmint = {
+				name = 'Spearmint',
+				text = {
+					"Go to a separate {C:attention}Shop",
+					"{C:inactive}(Restocks at end of Ante)"
 				}
 			},
 			elle_r_elle_rebecca = {
@@ -981,6 +1057,7 @@ return {
 			k_elle_resident = "Resident",
 			k_elle_visitor = "Visitor",
 			b_elle_residents = "Residents",
+
 			elle_resident_replace = "REPLACE",
 
 			-- Change Furry/Chesh wording for NSFW toggle

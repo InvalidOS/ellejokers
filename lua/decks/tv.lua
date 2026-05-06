@@ -93,12 +93,6 @@ ellejokers.custom_card_areas.tenna = function(game)
 	end
 end
 
--- Play Microgames when entering blind
--- Increase microgame count every 4 antes
--- Scale blind size by X0.25 every hit
--- X0.5 Base blind size
--- Preview microgame list above deck
-
 function G.FUNCS.elle_tennadeck_colours(e)
 	for i, v in ipairs(e.children) do
 		v.config.colour = mix_colours((slimeutils.microgames.running and (#e.children-i == #slimeutils.microgames.queue-1) and G.C.RED or G.C.BLUE), G.C.WHITE,v.states.hover.is and 0.8 or 1)
