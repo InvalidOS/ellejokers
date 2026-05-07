@@ -1,7 +1,7 @@
 SMODS.Booster{
 	key = "resident",
 	atlas = "booster",
-	weight = 2,
+	weight = 1,
 	kind = 'elle_Resident',
 	cost = 6,
 	config = { extra = 2, choose = 1 },

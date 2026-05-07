@@ -8,12 +8,11 @@ SMODS.Back {
 	pos = {x=0,y=1},
 	config = {joker_slot = -1},
 	loc_vars = function(self, info_queue, back)
-		return { vars = { self.config.joker_slot } }
+		return { vars = { self.config.joker_slot, localize { type = 'name_text', key = 'tag_elle_resident', set = 'Tag' } } }
 	end,
 	apply = function(self, back)
 		G.E_MANAGER:add_event(Event({ func = function()
-			SMODS.add_card({set = 'elle_Resident', seed = "elle_mall_deck", area = G.elle_resident_area})
-			
+			add_tag({ key = 'tag_elle_resident' })
 		return true end }))
 	end,
 	calculate = function(self, back, context)

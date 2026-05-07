@@ -812,8 +812,7 @@ return {
 				text={
 					"Choose {C:attention}#1#{} of up to",
 					"{C:attention}#2#{C:elle} Resident{} cards",
-				},
-				group_name = "Resident Pack"
+				}
 			},
 
 			undiscovered_elle_resident = {
@@ -839,6 +838,13 @@ return {
 				text={
 					"Restocks the",
 					"[[{V:1}BIG {V:2}SHOP{}]]"
+				}
+			},
+			tag_elle_resident={
+				name="Resident Tag",
+				text={
+					"Gives a free",
+					"{C:elle}Resident Pack"
 				}
 			}
 		},
@@ -882,7 +888,7 @@ return {
 				name="Mall Deck",
 				text={
 					"{C:red}#1#{} Joker Slots",
-					"Start with a random {C:elle}Resident",
+					"Start with a {C:elle,T:tag_elle_resident}#2#",
 					"{C:elle}Residents{} retrigger once"
 				}
 			}
@@ -981,7 +987,14 @@ return {
 			elle_r_elle_sarah = {
 				name = 'Sarah',
 				res_bio = {
-					""
+					"{C:elle}The Mall{}'s smartest mind and {C:attention}Chloe{}'s",
+					"girlfriend. As a surprise, she repurposed",
+					"experiments involving {C:attention}artificial life{} to",
+					"create an independently-moving {C:attention}tail{} for",
+					"her. By the time she realised that",
+					"this was a mistake...",
+					" ",
+					"{C:purple}It was already too late."
 				}
 			},
 			elle_r_elle_mint = {
@@ -1030,7 +1043,7 @@ return {
 					"Scoring cards create",
 					"{C:attention}Clickable Bubbles{} that",
 					"permanently give a random",
-					"card held in hand {C:mult}+2{} Mult"
+					"card held in hand {C:mult}+#1#{} Mult"
 				}
 			}
 		}
@@ -1049,6 +1062,7 @@ return {
 			elle_shop_restock = "Restocked!",
 
 			elle_residents = "Residents",
+			k_booster_group_p_elle_resident = "Resident Pack",
 			
 			elle_41_activate = "Yeah~!",
 			elle_suggestion = "Forcefem!",
