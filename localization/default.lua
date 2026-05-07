@@ -937,7 +937,7 @@ return {
 					"Also make sure it presses against",
 					"the right side of the box ->",
 					" ",
-					"It messes ui the UI otherwise :)"
+					"It messes up the UI otherwise :)"
 				}
 			},
 
