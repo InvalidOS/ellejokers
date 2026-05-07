@@ -126,11 +126,10 @@ function ellejokers.create_UIBox_your_collection_residents()
 					local bio_vars = {}
 					local c_key = center.discovered and (center.bio_key and center.bio_key(center,card,bio_vars) or center.key) or "undiscovered"
 
+					c_key = G.localization.descriptions.elle_Resident[c_key] and G.localization.descriptions.elle_Resident[c_key].res_bio and c_key or "shame"
 
 					local bio = {}
-					if G.localization.descriptions.elle_Resident[c_key] and G.localization.descriptions.elle_Resident[c_key].res_bio then
-						localize({type="res_bio", set="elle_Resident", key=c_key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT, vars = bio_vars})
-					end
+					localize({type="res_bio", set="elle_Resident", key=c_key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT, vars = bio_vars})
 					for _, line in ipairs(bio) do bio_lines[#bio_lines+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
 					
 					local bt = {}
@@ -146,7 +145,7 @@ function ellejokers.create_UIBox_your_collection_residents()
 					{n = G.UIT.C, config = {padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
 						{n=G.UIT.O, config = {object = c}}
 					}},
-					{n = G.UIT.C, config = {minw=4, maxw=4, h=G.CARD_H, padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
+					{n = G.UIT.C, config = {minw=4, maxw=4, minh=G.CARD_H, maxh=G.CARD_H, padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
 						{n = G.UIT.R, config = {}, nodes = bio_title},
 						{n = G.UIT.R, config = {}, nodes = bio_lines},
 					}}

@@ -8,12 +8,12 @@ ellejokers.Resident {
 		local colours = {}
 		
 		for i = 1, 6 do
-			colours[#colours+1] = mix_colours(HEX("65e6d4"),HEX("81cefd"),(i-1)/5)
+			colours[#colours+1] = mix_colours(self.resident_colour,G.P_CENTERS.elle_r_elle_sarah.resident_colour,(i-1)/5)
 		end
 
 		vars.colours = colours
 
-		return G.P_CENTERS.elle_r_elle_cheshire.discovered and self.key.."_alt" or nil
+		return G.P_CENTERS.elle_r_elle_cheshire.discovered and self.key.."_chesh" or nil
 		
 	end
 }

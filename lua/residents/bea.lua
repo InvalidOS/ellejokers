@@ -4,7 +4,7 @@ local bubbles = {}
 ellejokers.Resident {
 	key = 'bea',
 	pos = { x = 0, y = 1 },
-	config = { extra = { mult_mod = 3 } },
+	config = { extra = { mult_mod = 2 } },
 	loc_vars = function(self, info_queue, card)
 		return {vars = { card.ability.extra.mult_mod }}
 	end,

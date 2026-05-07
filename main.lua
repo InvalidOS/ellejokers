@@ -424,6 +424,7 @@ end
 loc_colour('red')
 G.ARGS.LOC_COLOURS.elle = HEX('FF53A9')
 G.ARGS.LOC_COLOURS.elle_mint = HEX('65e6d4')
+G.ARGS.LOC_COLOURS.elle_sarah = HEX('81cefd')
 
 -- Badges
 elle_badges = {
