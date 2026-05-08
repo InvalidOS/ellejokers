@@ -138,6 +138,7 @@ function ellejokers.create_UIBox_your_collection_residents()
 					bio_title = bt
 
 					c:emplace(card)
+					c:align_cards() -- Fixes tail layer being misplaced for a single frame :)
 				end
 
 				rowNode.nodes[#rowNode.nodes+1] =
@@ -145,10 +146,10 @@ function ellejokers.create_UIBox_your_collection_residents()
 					{n = G.UIT.C, config = {padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
 						{n=G.UIT.O, config = {object = c}}
 					}},
-					{n = G.UIT.C, config = {minw=4, maxw=4, minh=G.CARD_H, maxh=G.CARD_H, padding = 0.1, r = 0.08, emboss = 0.05, colour = G.C.BLACK}, nodes = {
-						{n = G.UIT.R, config = {}, nodes = bio_title},
-						{n = G.UIT.R, config = {}, nodes = bio_lines},
-					}}
+						{n = G.UIT.C, config = {r = 0.08, emboss = 0.05, colour = G.C.BLACK, padding = 0.1, minh=G.CARD_H, maxh=G.CARD_H}, nodes = {
+							{n = G.UIT.R, config = {minw=4, maxw=4}, nodes = bio_title},
+							{n = G.UIT.R, config = {minw=4, maxw=4}, nodes = bio_lines},
+						}}
 				}}
 			end
 			nodes[#nodes+1] = rowNode
@@ -358,11 +359,13 @@ local init_localization_ref = init_localization
 function init_localization()
 	init_localization_ref()
 
-	for _, center in pairs(G.localization.descriptions.elle_Resident) do
-		if center.res_bio then
-			center.res_bio_parsed = {}
-			for _, line in ipairs(center.res_bio) do
-				center.res_bio_parsed[#center.res_bio_parsed + 1] = loc_parse_string(line)
+	if G.localization.descriptions.elle_Resident then
+		for _, center in pairs(G.localization.descriptions.elle_Resident) do
+			if center.res_bio then
+				center.res_bio_parsed = {}
+				for _, line in ipairs(center.res_bio) do
+					center.res_bio_parsed[#center.res_bio_parsed + 1] = loc_parse_string(line)
+				end
 			end
 		end
 	end

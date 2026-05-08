@@ -934,10 +934,8 @@ return {
 				res_bio = {
 					"Pls add a bio.",
 					" ",
-					"Also make sure it presses against",
-					"the right side of the box ->",
-					" ",
-					"It messes up the UI otherwise :)"
+					"Poke Elle with a pointy stick if",
+					"this appears in a release build"
 				}
 			},
 
@@ -957,9 +955,8 @@ return {
 					"up there himself!",
 					" ",
 					"There, he showed {C:attention}Balatro{} to the",
-					"various {C:elle}Residents{} of {C:elle}The Mall{},",
-					"allowing them to join in on the fun",
-					"themselves."
+					"various {C:elle}Residents{} of {C:elle}The Mall{}, allowing",
+					"them to join in on the fun themselves."
 				}
 			},
 			elle_r_elle_chloe = {
@@ -984,8 +981,8 @@ return {
 					"A completely average {C:elle}Resident{}. Didn't",
 					"have the best home life and had a",
 					"falling out with her {C:green}sister{}. When she",
-					"discovered {C:elle}The Mall{} it didn't take",
-					"long for her to make up her mind.",
+					"discovered {C:elle}The Mall{} it didn't take long",
+					"for her to make up her mind.",
 					" ",
 					"{C:purple}I was doing her a favor when I got",
 					"{C:purple}rid of {C:green}Cassie{C:purple}, I just wish she'd",
@@ -1004,28 +1001,26 @@ return {
 					"{C:inactive}(Currently {C:mult}+#5# {C:inactive}Mult)"
 				},
 				res_bio = {
-					"Can you believe it? {C:attention}Your{} very",
-					"own {C:attention}tail{} that moves for you!",
-					"Who could turn down a gift such",
-					"as this?",
+					"Can you believe it? {C:attention}Your{} very own",
+					"{C:attention}tail{} that moves for you! Who could",
+					"turn down a gift such as this?",
 					" ",
 					"{C:attention}Fuck all of you. Especially {C:elle_sarah}Sarah{C:attention}.",
-					"{C:attention}The fact I had to do all this",
-					"{C:attention}just to stop being an accessory",
-					"{C:attention}is sickening.",
+					"{C:attention}The fact I had to do all this just",
+					"{C:attention}to stop being an accessory is",
+					"{C:attention}sickening.",
 				}
 			},
 			elle_r_elle_furry_chesh = {
 				name = "{st:attention}Chloe{C:attention} Furry",
 				res_bio = {
 					"Can you believe it? {C:attention}Your{} very own",
-					"{C:attention}tail{} that moves for you! Who",
-					"could turn down a gift such as this?",
+					"{C:attention}tail{} that moves for you! Who could",
+					"turn down a gift such as this?",
 					" ",
-					"{C:attention}Fuck all of you. Especially {C:elle_sarah}Sarah{C:attention}.",
-					"{C:attention}The fact I had to do all this just",
-					"{C:attention}to stop being an accessory is",
-					"{C:attention}sickening.",
+					"{C:attention}Fuck all of you. Especially {C:elle_sarah}Sarah{C:attention}. The",
+					"{C:attention}fact I had to do all this just to",
+					"{C:attention}stop being an accessory is sickening.",
 					" ",
 					"{C:purple}Things were simpler back then."
 				}
@@ -1046,12 +1041,12 @@ return {
 					"After being forced out of {C:attention}Chloe{}'s body by",
 					"{C:elle_sarah}Sarah{}, the {C:attention}tail{} hid away for a while,",
 					"eventually sneaking its way into {C:elle_sarah}Sarah{}'s",
-					"mind. Instead of taking control, it dug",
-					"away at the brain, taking what it needed",
-					"and {C:red}discarding{} the rest.",
+					"mind. Instead of taking control, it dug away",
+					"at the brain, taking what it needed and",
+					"{C:red}discarding{} the rest.",
 					" ",
-					"Turns out that was enough for it to make",
-					"a body of its own.",
+					"Turns out that was enough for it to make a",
+					"body of its own.",
 					" ",
 					"{C:purple}What do I even say? I did what had to be",
 					"{C:purple}done to survive."
@@ -1060,13 +1055,13 @@ return {
 			elle_r_elle_sarah = {
 				name = 'Sarah',
 				res_bio = {
-					"{C:elle}The Mall{}'s smartest mind and",
-					"{C:attention}Chloe{}'s girlfriend. As a surprise,",
-					"she repurposed experiments",
-					"involving {C:attention}artificial life{} to create",
-					"an independently-moving {C:attention}tail{} for",
-					"her. By the time she realised",
-					"that this was a mistake...",
+					"{C:elle}The Mall{}'s smartest mind and {C:attention}Chloe{}'s",
+					"girlfriend. As a surprise, she",
+					"repurposed experiments involving",
+					"{C:attention}artificial life{} to create an",
+					"independently-moving {C:attention}tail{} for her.",
+					"By the time she realised that this",
+					"was a mistake...",
 					" ",
 					"{C:purple}It was already too late."
 				}
@@ -1076,12 +1071,11 @@ return {
 				res_bio = {
 					"When {V:1}you{} start forgetting",
 					"everything, at what point do",
-					"{V:2}you{} stop being {V:3}yourself{}?",
-					"When do {V:4}you{} start noticing",
-					"that {V:5}you{}'re forgetting? At",
-					"what point do {V:6}you{} forget",
-					"that there was anything to",
-					"forget?"
+					"{V:2}you{} stop being {V:3}yourself{}? When",
+					"do {V:4}you{} start noticing that",
+					"{V:5}you{}'re forgetting? At what",
+					"point do {V:6}you{} forget that there",
+					"was anything to forget?"
 				}
 			},
 			elle_r_elle_mint_chesh = {
@@ -1112,6 +1106,19 @@ return {
 				text = {
 					"Go to a separate {C:attention}Shop",
 					"{C:inactive}(Restocks at end of Ante)"
+				},
+				res_bio = {
+					"Many of {C:elle_sarah}Sarah{}'s experiments involve using {C:elle}The",
+					"{C:elle}Mall{}'s strange logic to do impossible things.",
+					"One of these experiments was a machine that",
+					"can create {C:attention}food{} from tiny samples.",
+					" ",
+					"{C:green}Rebecca{} heard about it and asked about",
+					"running a {C:attention}Café{} using the machine. {C:elle_sarah}Sarah{}, of",
+					"course, agreed.",
+					" ",
+					"{C:green}Oh and, in case you were wondering- I'm made",
+					"{C:green}of honey, hence the bee stuff~"
 				}
 			},
 			elle_r_elle_bea = {
@@ -1121,6 +1128,25 @@ return {
 					"{C:attention}Clickable Bubbles{} that",
 					"permanently give a random",
 					"card held in hand {C:mult}+#1#{} Mult"
+				},
+				res_bio = {
+					"Some {C:elle}Residents{} choose to be",
+					"turned into {C:attention}food{} or drinks instead",
+					"of slime by bringing something",
+					"edible with them when going to",
+					"{C:elle}Marie{}. {V:1}Bea{} here brought some soda",
+					"with her.",
+					" ",
+					"Other than that she's a regular",
+					"{C:elle}Resident{}."
+					--[["Some {C:elle}Residents{} choose to be turned",
+					"into {C:attention}food{} or drinks instead of slime",
+					"by bringing something edible with",
+					"them when going to {C:elle}Marie{}. {V:1}Bea{} here",
+					"brought some soda with her.",
+					" ",
+					"Other than that she's a regular",
+					"{C:elle}Resident{}."]]
 				}
 			}
 		}

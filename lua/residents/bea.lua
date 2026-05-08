@@ -25,6 +25,10 @@ ellejokers.Resident {
 		end
 	end,
 	resident_colour = HEX("c3543a"),
+	bio_key = function(self, card, vars)
+		vars.colours = {self.resident_colour}
+		return nil
+	end
 }
 
 local bubble_sprite = love.graphics.newImage(love.image.newImageData(SMODS.NFS.newFileData(SMODS.current_mod.path ..

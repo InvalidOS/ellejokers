@@ -14,6 +14,5 @@ ellejokers.Resident {
 		vars.colours = colours
 
 		return G.P_CENTERS.elle_r_elle_cheshire.discovered and self.key.."_chesh" or nil
-		
 	end
 }
