@@ -939,24 +939,25 @@ return {
 				}
 			},
 
-			elle_r_elle_jimbo = {
-				name = 'Jimbo',
+			elle_r_elle_marie = {
+				name = 'Marie',
 				text = {
-					"Once per round, use to",
-					"permanently give all",
-					"played cards {C:mult}+#1#{} Mult",
-					"{C:attention}#2#"
+					"Once per {C:attention}Ante{}, use to",
+					"create a {C:common}Common{},",
+					"{C:uncommon}Uncommon{}, or {C:rare}Rare",
+					"{C:attention}Joker{} of your choice"
 				},
 				res_bio = {
-					"This familiar {C:attention}Joker{} heard about {C:elle}The",
-					"{C:elle}Mall{} through an online forum run by",
-					"people who'd woken up in {C:elle}The Mall",
-					"before. The following night, he woke",
-					"up there himself!",
+					"When you fall asleep at night, there's a",
+					"chance you may wake up in {C:elle}The Mall{}, a",
+					"place run by {C:elle}Marie{}. As {C:elle}The Mall{}'s {C:attention}Admin{},",
+					"she has the ability to let people live",
+					"forever there via a {C:attention}contract{}.",
 					" ",
-					"There, he showed {C:attention}Balatro{} to the",
-					"various {C:elle}Residents{} of {C:elle}The Mall{}, allowing",
-					"them to join in on the fun themselves."
+					"{C:elle}The Mall{} is free from capitalism, taxes,",
+					"and other woes of normal life. As a bonus,",
+					"these {C:elle}Residents{} also become colourful",
+					"Slime/Food people in the process."
 				}
 			},
 			elle_r_elle_chloe = {

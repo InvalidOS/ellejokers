@@ -184,7 +184,7 @@ local jokers = {
 	}
 }
 local residents = {
-	"jimbo",
+	"marie",
 	"chloe",
 	"furry",
 	"cheshire",
@@ -417,7 +417,11 @@ ellejokers.undertale_font = love.graphics.newFont(SMODS.NFS.newFileData( SMODS.c
 --		[[ Config / Optional Features ]]
 -- Optional Features
 SMODS.current_mod.optional_features = function()
-    return { retrigger_joker = true, quantum_enhancements = true }
+    return {
+		retrigger_joker = true,
+		quantum_enhancements = true,
+		object_weights = true
+	}
 end
 
 -- Text Colours
