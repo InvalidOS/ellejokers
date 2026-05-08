@@ -15,12 +15,12 @@ ellejokers.Resident {
 			use = function(self, card)
 				G.FUNCS.overlay_menu({ definition = create_UIbox_becca() })
 			end,
-			colour = HEX("ffa747"),
+			colour = HEX("89ca80"),
 			scale = 1.6,
 			close = true
 		}
 	},
-	resident_colour = HEX("ffa747"),
+	resident_colour = HEX("89ca80"),
 	elle_tail = {x = 2, y = 3}
 }
 
