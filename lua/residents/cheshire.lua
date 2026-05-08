@@ -79,5 +79,6 @@ ellejokers.Resident {
 			close = true
 		}
 	},
-	resident_colour = HEX("917bad")
+	resident_colour = HEX("917bad"),
+	set_ability = function(self, card, initial, delay_sprites) ellejokers.furry_sprite(card) end
 }

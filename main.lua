@@ -500,7 +500,7 @@ for _, v in ipairs(decks) do
 end
 
 for _, v in ipairs(crossmod) do
-	if next(SMODS.find_mod(v)) then assert(SMODS.load_file("lua/residents/"..v..".lua"))() end
+	if next(SMODS.find_mod(v)) then assert(SMODS.load_file("lua/crossmod/"..v..".lua"))() end
 end
 
 SMODS.current_mod.calculate = function(self,context)

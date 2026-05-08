@@ -44,7 +44,8 @@ local furry = ellejokers.Resident {
 		} end
 	},
 	update = function(self, card, dt) ellejokers.furry_sprite(card) end,
-	bio_key = function(self, card, vars) return G.P_CENTERS.elle_r_elle_cheshire.discovered and self.key.."_chesh" or nil end
+	bio_key = function(self, card, vars) return G.P_CENTERS.elle_r_elle_cheshire.discovered and self.key.."_chesh" or nil end,
+	set_ability = function(self, card, initial, delay_sprites) ellejokers.furry_sprite(card) end
 }
 
 furry.calculate = function(self, card, context)
