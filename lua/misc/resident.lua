@@ -126,14 +126,15 @@ function ellejokers.create_UIBox_your_collection_residents()
 					local bio_vars = {}
 					local c_key = center.discovered and (center.bio_key and center.bio_key(center,card,bio_vars) or center.key) or "undiscovered"
 
-					c_key = G.localization.descriptions.elle_Resident[c_key] and G.localization.descriptions.elle_Resident[c_key].res_bio and c_key or "shame"
+					local name_key = G.localization.descriptions.elle_Resident[c_key] and G.localization.descriptions.elle_Resident[c_key].name and c_key or (center.loc_vars and center:loc_vars({},card).key or center.key)
+					local bio_key = G.localization.descriptions.elle_Resident[c_key] and G.localization.descriptions.elle_Resident[c_key].res_bio and c_key or "shame"
 
 					local bio = {}
-					localize({type="res_bio", set="elle_Resident", key=c_key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT, vars = bio_vars})
+					localize({type="res_bio", set="elle_Resident", key=bio_key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT, vars = bio_vars})
 					for _, line in ipairs(bio) do bio_lines[#bio_lines+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
 					
 					local bt = {}
-					localize({type = 'name', key = c_key, set = 'elle_Resident', nodes = bio_title})
+					localize({type = 'name', key = name_key, set = 'elle_Resident', nodes = bio_title})
 					for _, line in ipairs(bio_title) do bt[#bt+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
 					bio_title = bt
 

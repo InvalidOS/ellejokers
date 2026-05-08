@@ -190,6 +190,8 @@ local residents = {
 	"cheshire",
 	"sarah",
 	"mint",
+	"spearmint",
+	"spearlamp",
 	"rebecca",
 	"bea"
 }
@@ -297,7 +299,7 @@ SMODS.Atlas {
 }
 SMODS.Atlas {
 	key = "lamps",
-	path = "joker/lamps.png",
+	path = "resident/lamps.png",
 	px = 71,
 	py = 95
 }

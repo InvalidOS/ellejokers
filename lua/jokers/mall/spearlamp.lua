@@ -1,36 +1,4 @@
--- Add lamp variants here :3
-ellejokers.lamps = {
-	{
-		badge = elle_badges.mall
-	},
-	{
-		key_suffix = "_vivi",
-		icon = { atlas = "elle_cornericons", pos = {x=1,y=1} },
-		crossover = {
-			set = "Other", key = "elle_crossover", specific_vars = {"Reverie","@critterror.bsky.social"},
-			slime_desc_icon = { atlas = "elle_cornericons", pos = {x=1,y=1} }
-		},
-		badge = elle_badges.friends
-	},
-	{
-		key_suffix = "_jess",
-		icon = { atlas = "elle_cornericons", pos = {x=1,y=0} },
-		crossover = {
-			set = "Other", key = "elle_crossover", specific_vars = {"Jess","@soup587.bsky.social"},
-			slime_desc_icon = { atlas = "elle_cornericons", pos = {x=1,y=0} }
-		},
-		badge = elle_badges.poly
-	},
-	{
-		key_suffix = "_drago",
-		icon = { atlas = "elle_cornericons", pos = {x=0,y=1} },
-		crossover = {
-			set = "Other", key = "elle_crossover", specific_vars = {"Drago","@dragothedemon.bsky.social"},
-			slime_desc_icon = { atlas = "elle_cornericons", pos = {x=0,y=1} }
-		},
-		badge = elle_badges.friends
-	}
-}
+
 
 local spearlamp = SMODS.Joker {
 	key = 'spearlamp',

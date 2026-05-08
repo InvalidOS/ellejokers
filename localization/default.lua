@@ -1013,7 +1013,6 @@ return {
 				}
 			},
 			elle_r_elle_furry_chesh = {
-				name = "{st:attention}Chloe{C:attention} Furry",
 				res_bio = {
 					"Can you believe it? {C:attention}Your{} very own",
 					"{C:attention}tail{} that moves for you! Who could",
@@ -1080,7 +1079,6 @@ return {
 				}
 			},
 			elle_r_elle_mint_chesh = {
-				name = '{st:purple}Sarah{C:elle_mint} Mint',
 				res_bio = {
 					"When {V:1}you{} start forgetting everything, at",
 					"what point do {V:2}you{} stop being {V:3}yourself{}?",
@@ -1098,8 +1096,19 @@ return {
 			elle_r_elle_spearmint = {
 				name = 'Spearmint',
 				text = {
-					"Go to a separate {C:attention}Shop",
-					"{C:inactive}(Restocks at end of Ante)"
+					""
+				},
+				res_bio = {
+					"A modification of the {C:attention}artificial resident",
+					"{C:attention}experiments{} intended to create a digital",
+					"assistant, later merged with {C:elle_sarah}Sarah{}'s",
+					"memories after her mind started",
+					"{C:elle_mint}deteriorating{}.",
+					" ",
+					"She still doesn't identify as {C:elle_sarah}Sarah{}, nor",
+					"does she act like her, yet some people",
+					"still see her as the same person",
+					"somehow."
 				}
 			},
 			elle_r_elle_rebecca = {
@@ -1140,16 +1149,70 @@ return {
 					" ",
 					"Other than that she's a regular",
 					"{C:elle}Resident{}."
-					--[["Some {C:elle}Residents{} choose to be turned",
-					"into {C:attention}food{} or drinks instead of slime",
-					"by bringing something edible with",
-					"them when going to {C:elle}Marie{}. {V:1}Bea{} here",
-					"brought some soda with her.",
-					" ",
-					"Other than that she's a regular",
-					"{C:elle}Resident{}."]]
 				}
-			}
+			},
+			elle_r_elle_spearlamp = {
+				name = 'Spearlamp',
+				text = {
+					""
+				},
+				res_bio = {
+					"After finding out that",
+					"{C:elle_sarah}Spearmint{} had a copy of",
+					"{C:elle_sarah}Sarah{}'s memories in her, {C:attention}Chloe",
+					"grew attached. Without the",
+					"skills to make a proper body",
+					"for her, she tried the next",
+					"best thing...",
+				}
+			},
+
+			elle_r_elle_spearlamp_cameo = {
+				res_bio = {
+					"Some friends of {C:elle}mine{} wanted",
+					"to be lamps for some reason,",
+					"so there's a chance you get",
+					"one of them instead.",
+					" ",
+					"{C:elle}-elle."
+				}
+			},
+
+			elle_r_elle_spearlamp_cameo_nsfw = {
+				res_bio = {
+					"Some friends of {C:elle}mine{} saw a cute",
+					"lamp and immediately had some very",
+					"normal {C:attention}objectum{} thoughts that",
+					"eventually led to this~",
+					" ",
+					"...You'd fuck a lamp too, wouldn't",
+					"you?",
+					" ",
+					"{C:elle}-elle."
+				}
+			},
+
+			elle_r_elle_spearlamp_vivi = {
+				name = '{C:purple}Vivi{}lamp',
+				text = {
+					""
+				}
+			},
+
+			elle_r_elle_spearlamp_jess = {
+				name = '{C:elle_sarah}Jess{}lamp',
+				text = {
+					""
+				}
+			},
+			
+			elle_r_elle_spearlamp_drago = {
+				name = '{C:purple}Drago{}lamp',
+				text = {
+					""
+				}
+			},
+			
 		}
 	},
 	misc = {
