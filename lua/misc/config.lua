@@ -27,7 +27,7 @@ local upgrade_trees = {
 	--{"j_elle_feri", "j_elle_ferisophie"},
 	--{"j_elle_sophie","j_elle_fallen"},
 	{"elle_r_elle_sarah","elle_r_elle_mint"},
-	{"j_elle_p41", "j_elle_prototypes"},
+	--{"j_elle_p41", "j_elle_prototypes"},
 	--{"j_elle_drago","j_elle_cheshdrago"},
 	{"j_credit_card", "j_elle_bat_credit_card"}
 }
