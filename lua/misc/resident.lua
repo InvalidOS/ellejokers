@@ -125,8 +125,8 @@ function ellejokers.create_UIBox_your_collection_residents()
 					
 					local loc_vars = center.loc_vars and center:loc_vars({},card) or {}
 
-					local name_key = center.key--loc_vars and loc_vars.key or center.key
-					local bio_key = center.key--loc_vars and loc_vars.bio_key or center.key or "shame"
+					local name_key = loc_vars and loc_vars.key or center.key
+					local bio_key = loc_vars and loc_vars.bio_key or center.key or "shame"
 					
 					if not (G.localization.descriptions.elle_Resident[center.key] and G.localization.descriptions.elle_Resident[center.key].res_bio) then
 						name_key = "shame"
