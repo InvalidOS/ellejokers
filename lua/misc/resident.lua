@@ -123,23 +123,26 @@ function ellejokers.create_UIBox_your_collection_residents()
 				if center then
 					local card = Card(c.T.x + c.T.w/2, c.T.y, G.CARD_W, G.CARD_H, G.P_CARDS.empty, center)
 					
-					local bio_vars = {}
-					local c_key = center.discovered and (center.bio_key and center.bio_key(center,card,bio_vars) or center.key) or "undiscovered"
+					local loc_vars = center.loc_vars and center:loc_vars({},card) or {}
 
-					local name_key = G.localization.descriptions.elle_Resident[c_key] and G.localization.descriptions.elle_Resident[c_key].name and c_key or (center.loc_vars and center:loc_vars({},card).key or center.key)
-					local bio_key = G.localization.descriptions.elle_Resident[c_key] and G.localization.descriptions.elle_Resident[c_key].res_bio and c_key or "shame"
+					local name_key = center.key--loc_vars and loc_vars.key or center.key
+					local bio_key = center.key--loc_vars and loc_vars.bio_key or center.key or "shame"
+					
+					if not (G.localization.descriptions.elle_Resident[center.key] and G.localization.descriptions.elle_Resident[center.key].res_bio) then
+						name_key = "shame"
+						bio_key = "shame"
+					end
 
 					local bio = {}
-					localize({type="res_bio", set="elle_Resident", key=bio_key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT, vars = bio_vars})
+					localize({type="res_bio", set="elle_Resident", key=bio_key, nodes=bio, default_col=G.C.UI.TEXT_LIGHT, vars = loc_vars.vars})
 					for _, line in ipairs(bio) do bio_lines[#bio_lines+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
 					
 					local bt = {}
-					localize({type = 'name', key = name_key, set = 'elle_Resident', nodes = bio_title})
+					localize({type = 'name', key = bio_key == "shame" and "shame" or name_key, set = 'elle_Resident', nodes = bio_title, vars = loc_vars.vars})
 					for _, line in ipairs(bio_title) do bt[#bt+1] = {n = G.UIT.R, config = {align = "cl"}, nodes = line} end
 					bio_title = bt
 
 					c:emplace(card)
-					c:align_cards() -- Fixes tail layer being misplaced for a single frame :)
 				end
 
 				rowNode.nodes[#rowNode.nodes+1] =

@@ -1123,12 +1123,12 @@ return {
 					"One of these experiments was a machine that",
 					"can create {C:attention}food{} from tiny samples.",
 					" ",
-					"{C:green}Rebecca{} heard about it and asked about",
+					"{V:1}Rebecca{} heard about it and asked about",
 					"running a {C:attention}Café{} using the machine. {C:elle_sarah}Sarah{}, of",
 					"course, agreed.",
 					" ",
-					"{C:green}Oh and, in case you were wondering- I'm made",
-					"{C:green}of honey, hence the bee stuff~"
+					"{V:1}Oh and, in case you were wondering- I'm made",
+					"{V:1}of honey, hence the bee stuff~"
 				}
 			},
 			elle_r_elle_bea = {
@@ -1212,6 +1212,13 @@ return {
 					""
 				}
 			},
+
+			elle_r_elle_p41 = {
+				name = 'Prototype #1#41',
+				res_bio = {
+					"Hi chat!"
+				}
+			}
 			
 		}
 	},

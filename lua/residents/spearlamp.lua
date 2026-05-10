@@ -40,13 +40,14 @@ ellejokers.Resident {
 
 		card.config.center.slime_desc_icon = lamp.icon
 		
-		return { vars = { }, key = self.key..(lamp.key_suffix or "") }
+		return {
+			vars = { },
+			key = self.key..(lamp.key_suffix or ""),
+			bio_key = card.ability.extra.variant>1 and self.key..(ellejokers.mod_data.config.nsfw and "_cameo_nsfw" or "_cameo") or nil
+		}
 	end,
 	config = { extra = { variant = 1 } },
 	resident_colour = HEX("81cefd"),
-	bio_key = function(self, card, vars)
-		return card.ability.extra.variant>1 and self.key..(ellejokers.mod_data.config.nsfw and "_cameo_nsfw" or "_cameo") or nil
-	end,
 	set_ability = function(self, card, initial, delay_sprites)
 		-- 1 in 5 chance of silly lamp
 		if pseudorandom("elle_do_lamp_tf",1,5)==1 then card.ability.extra.variant = pseudorandom("elle_lamp_tf",1,#ellejokers.lamps)+1 end

@@ -22,13 +22,13 @@ local function upgrade_tree_example(t)
 end
 
 local upgrade_trees = {
-	{"j_elle_chloe", "j_elle_furry"},
-	{"j_elle_furry", "j_elle_cheshire"},
-	{"j_elle_feri", "j_elle_ferisophie"},
-	{"j_elle_sophie","j_elle_fallen"},
-	{"j_elle_sarah","j_elle_mint"},
+	{"elle_r_elle_chloe", "elle_r_elle_furry"},
+	{"elle_r_elle_furry", "elle_r_elle_cheshire"},
+	--{"j_elle_feri", "j_elle_ferisophie"},
+	--{"j_elle_sophie","j_elle_fallen"},
+	{"elle_r_elle_sarah","elle_r_elle_mint"},
 	{"j_elle_p41", "j_elle_prototypes"},
-	{"j_elle_drago","j_elle_cheshdrago"},
+	--{"j_elle_drago","j_elle_cheshdrago"},
 	{"j_credit_card", "j_elle_bat_credit_card"}
 }
 
@@ -37,7 +37,7 @@ local splashes = {
 	"Yet another OC mod",
 	"Hi chat!",
 	"elle wuz here.",
-	"7 members and counting",
+	"9 members and counting",
 	"Can you believe the shit they let me write in here?",
 	"Beware the purple cat...",
 	"I'll make you pay! I've got friends on the inside!",
@@ -46,7 +46,7 @@ local splashes = {
 
 -- ty aiko for telling me how to do this lol
 -- ..also i'm referencing aikoshen code for this lmao
---[[SMODS.current_mod.custom_ui = function(mod_nodes)
+SMODS.current_mod.custom_ui = function(mod_nodes)
 	mod_nodes = EMPTY(mod_nodes)
 	
 	mod_nodes[#mod_nodes+1] = {n = G.UIT.C, config = {padding = 0.1}, nodes = {
@@ -112,7 +112,7 @@ local splashes = {
 							{n = G.UIT.R, config = {align = "cr"}, nodes = {{n = G.UIT.T, config = {text = "fuckin' slime girl OCs and", scale = .4, colour = G.C.WHITE}}}},
 							{n = G.UIT.R, config = {align = "cr"}, nodes = {{n = G.UIT.T, config = {text = "the lore I gave them", scale = .4, colour = G.C.WHITE}}}}
 						}},
-						{n = G.UIT.C, nodes = {{n = G.UIT.O, config = { object = slimeutils.create_display_card("j_elle_marie") }}}}
+						{n = G.UIT.C, nodes = {{n = G.UIT.O, config = { object = slimeutils.create_display_card("elle_r_elle_marie") }}}}
 					}}
 				}}
 			}},
@@ -146,7 +146,7 @@ local splashes = {
 			}}
 		}}
 	}}
-end]]
+end
 
 local nsfw_cards = {
 	"j_elle_feri"
@@ -235,7 +235,7 @@ SMODS.current_mod.config_tab = function()
 		}},config={}}
 	}
 	localnodes.nsfw.states.visible = false
-	localnodes.sfw.states.visible = true
+	localnodes.sfw.states.visible = false
 
 	local n = localnodes2.nsfw:get_UIE_by_ID("textthing")
 	local n2 = localnodes2.sfw:get_UIE_by_ID("textthing2")

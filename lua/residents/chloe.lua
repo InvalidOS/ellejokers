@@ -3,7 +3,10 @@ ellejokers.Resident {
 	pos = { x = 2, y = 0 },
 	config = { extra = { chip_mod = 1, chips = 0, count = 0, req = 20 } },
 	loc_vars = function(self, info_queue, card)
-		return { vars = { card.ability.extra.chip_mod, card.ability.extra.chips } }
+		return {
+			vars = { card.ability.extra.chip_mod, card.ability.extra.chips },
+			bio_key = G.P_CENTERS.elle_r_elle_cheshire.discovered and self.key.."_chesh" or nil
+		}
 	end,
 	slime_upgrade = {
 		card = "elle_r_elle_furry",
@@ -30,6 +33,5 @@ ellejokers.Resident {
 			end
 		end
 	end,
-	resident_colour = HEX("89ca80"),
-	bio_key = function(self, card, vars) return G.P_CENTERS.elle_r_elle_cheshire.discovered and self.key.."_chesh" or nil end
+	resident_colour = HEX("89ca80")
 }

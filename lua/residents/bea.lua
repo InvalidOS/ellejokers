@@ -6,7 +6,7 @@ ellejokers.Resident {
 	pos = { x = 0, y = 1 },
 	config = { extra = { mult_mod = 2 } },
 	loc_vars = function(self, info_queue, card)
-		return {vars = { card.ability.extra.mult_mod }}
+		return {vars = { card.ability.extra.mult_mod, colours = {self.resident_colour} }}
 	end,
 	calculate = function(self, card, context)
 		if context.individual and not context.end_of_round and context.cardarea == G.play and #G.hand.cards > 0 then
@@ -24,11 +24,7 @@ ellejokers.Resident {
 			return #bubbles==0 end}))
 		end
 	end,
-	resident_colour = HEX("c3543a"),
-	bio_key = function(self, card, vars)
-		vars.colours = {self.resident_colour}
-		return nil
-	end
+	resident_colour = HEX("c3543a")
 }
 
 local bubble_sprite = love.graphics.newImage(love.image.newImageData(SMODS.NFS.newFileData(SMODS.current_mod.path ..
