@@ -195,7 +195,8 @@ local residents = {
 	"rebecca",
 	"bea",
 	"41",
-	"23"
+	"23",
+	"sophie"
 }
 
 local crossmod = {
@@ -433,6 +434,39 @@ loc_colour('red')
 G.ARGS.LOC_COLOURS.elle = HEX('FF53A9')
 G.ARGS.LOC_COLOURS.elle_mint = HEX('65e6d4')
 G.ARGS.LOC_COLOURS.elle_sarah = HEX('81cefd')
+
+local burn_c = {
+	HEX('a7544f'),
+	HEX('de8647'),
+	HEX('fdc857')
+}
+
+G.ARGS.LOC_COLOURS.elle_burn = SMODS.Gradient({
+	key = "elle_burn",
+	colours = {
+		burn_c[1],
+		burn_c[2],
+		burn_c[3],
+		burn_c[2]
+	},
+	cycle = 5
+})
+
+SMODS.DynaTextEffect {
+    key = "elle_burn",
+    func = function(dynatext, index, letter)
+		local t = G.TIMERS.REAL * 3 + index
+
+        letter.offset = {
+			x = 0,
+            y = math.cos(t) * 4
+        }
+
+		local c = math.sin(t * 0.683) + 2
+
+        letter.colour = mix_colours(burn_c[math.ceil(c)], burn_c[math.floor(c)],c%1)
+    end,
+}
 
 -- Badges
 elle_badges = {

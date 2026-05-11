@@ -132,7 +132,7 @@ SMODS.current_mod.custom_ui = function(mod_nodes)
 						{n = G.UIT.R, config = {align = "cm", padding = 0.1, minw = 4}, nodes = {
 							{n = G.UIT.R, config = {align = "cm"}, nodes = {
 								{n = G.UIT.T, config = {text = "Upgrade", scale = .4, colour = G.C.FILTER}},
-								{n = G.UIT.T, config = {text = " your Jokers into", scale = .4, colour = G.C.WHITE}}
+								{n = G.UIT.T, config = {text = " your Cards into", scale = .4, colour = G.C.WHITE}}
 							}},
 							{n = G.UIT.R, config = {align = "cm"}, nodes = {{n = G.UIT.T, config = {text = "new, more interesting ones", scale = .4, colour = G.C.WHITE}}}},
 							{n = G.UIT.R, config = {align = "cm"}, nodes = {

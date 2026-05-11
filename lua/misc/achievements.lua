@@ -22,7 +22,8 @@ SMODS.Achievement {
 	end
 }
 
-SMODS.Achievement {
+-- haha these don't make sense anymore
+--[[SMODS.Achievement {
 	key="puritan",
 	bypass_all_unlocked = true,
 	unlock_condition = function (self, args)
@@ -36,7 +37,7 @@ SMODS.Achievement {
 	unlock_condition = function (self, args)
 		if args then return args.type == "elle_doublekill" end
 	end
-}
+}]]
 
 SMODS.Achievement {
 	key="wordlelucky",

@@ -3,7 +3,7 @@ version = "0.1.0"
 dump_lua = true
 priority = 0
 
-# Add Spearlamp & Drago info_queue messages
+# Add Burn & Drago info_queue messages
 [[patches]]
 [patches.pattern]
 target = "functions/common_events.lua"
@@ -12,14 +12,13 @@ position = "before"
 payload = '''
 -- ellejokers. stuff :p
 if (card) then
-	-- Spearlamp support
-	if (#SMODS.find_card("j_elle_spearlamp", false)>0) then
-		if (_c.key == "m_steel") then info_queue[#info_queue+1] = G.P_CENTERS.m_elle_slime end
-		if (_c.key == "m_elle_slime") then info_queue[#info_queue+1] = G.P_CENTERS.m_steel end
+	-- Sophie Burn support
+	if specific_vars and specific_vars.elle_burns then
+		info_queue[#info_queue+1] = {set="Other",key="elle_burn"}
 	end
 	-- Drago support
-	if (#SMODS.find_card("j_elle_drago", false)>0) then
-		if (_c.key == "m_wild") then info_queue[#info_queue+1] = G.P_CENTERS[G.GAME.current_round.elle_drago_ench] end
+	if #SMODS.find_card("j_elle_drago", false)>0 then
+		if _c.key == "m_wild" then info_queue[#info_queue+1] = G.P_CENTERS[G.GAME.current_round.elle_drago_ench] end
 	end
 end
 '''
@@ -102,3 +101,13 @@ elseif request.type == 'elle_get_ambient' then
 '''
 match_indent = true
 
+[[patches]]
+[patches.pattern]
+target = '''card.lua'''
+pattern = '''bonus_h_dollars = self.ability.perma_h_dollars ~= 0 and self.ability.perma_h_dollars or nil,'''
+position = "after"
+payload = '''
+elle_burns = self.ability.elle_burns ~= 0 and self.ability.elle_burns or nil,
+'''
+match_indent = true
+times = 1

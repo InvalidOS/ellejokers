@@ -490,8 +490,8 @@ return {
 						"{C:inactive}(Resets at end of Ante)"
 					},
 					{
-						"{C:white,X:mult}X#1#{} Mult for each",
-						"{C:attention}Remaining{} guess",
+						"{C:white,X:mult}X#1#{} Mult per",
+						"guess {C:attention}Remaining{} on win",
 						"{C:inactive}(Currently {C:white,X:mult}X#2#{C:inactive} Mult)"
 					}
 				}
@@ -822,6 +822,29 @@ return {
 					"this resident in an",
 					"unseeded run to",
 					"learn what they do",
+				}
+			},
+			
+			elle_burn = {
+				name = "Burnt",
+				text = {
+					"{X:elle_burn,C:white}X0.5{} Scored values",
+					"per Burn, destroys when",
+					"card exceeds {C:attention}3{} Burns"
+				}
+			},
+
+			elle_card_burn = {
+				text = {
+					"{E:elle_burn}#1#{} burn",
+					"{X:elle_burn,C:white}X#2#{} scoring values"
+				}
+			},
+
+			elle_card_burns = {
+				text = {
+					"{E:elle_burn}#1#{} burns",
+					"{X:elle_burn,C:white}X#2#{} scoring values"
 				}
 			}
 		},
@@ -1216,10 +1239,73 @@ return {
 			elle_r_elle_p41 = {
 				name = 'Prototype #1#41',
 				res_bio = {
-					"Hi chat!"
+					"Apparently, turning attempts",
+					"at {C:attention}sentient, humanoid life{} into",
+					"just a {C:purple}tail{} is more difficult",
+					"than it seems.",
+					" ",
+					"Instead you're left with a",
+					"catgirl that has as many tails",
+					"as she wants."
+				}
+			},
+
+			elle_r_elle_p41_chesh = {
+				res_bio = {
+					"Apparently, turning attempts at {C:attention}sentient, humanoid",
+					"{C:attention}life{} into just a {C:purple}tail{} is more difficult than it seems.",
+					" ",
+					"Instead you're left with a catgirl that has as many",
+					"tails as she wants.",
+					" ",
+					"{C:purple}I dragged {C:attention}Chloe{C:purple} along for an expedition through",
+					"{C:elle_sarah}Sarah{C:purple}'s old lab not too long ago, hoping to show her",
+					"{C:purple}just how bad she was. Turns out a bunch of these",
+					"{C:purple}were just being kept in statis this whole time.",
+					" ",
+					"{C:purple}I let {C:attention}Chloe{C:purple} look after this one. Hopefully that",
+					"{C:purple}cheers her up a bit."
+				}
+			},
+			
+			elle_r_elle_p23 = {
+				name = "Prototype #1#23",
+				res_bio = {
+					"One of the earlier {C:attention}Artificial",
+					"{C:attention}Resident experiments{}, before",
+					"{C:elle_sarah}Sarah{}'s involvement. It was",
+					"discovered early on that they",
+					"can't be brought back from",
+					"{T:c_death}death{} like normal {C:elle}Residents{}, so",
+					"they started being kept in",
+					"stasis after being made."
+				}
+			},
+			
+			elle_r_elle_p23_chesh = {
+				name = "Prototype #1#23",
+				res_bio = {
+					"One of the earlier {C:attention}Artificial Resident",
+					"{C:attention}experiments{}, before {C:elle_sarah}Sarah{}'s",
+					"involvement. It was discovered early",
+					"on that they can't be brought back",
+					"from {T:c_death}death{} like normal {C:elle}Residents{}, so",
+					"they started being kept in stasis",
+					"after being made.",
+					" ",
+					"{C:purple}This was one of the first attempts",
+					"{C:purple}to look humanoid. I kept this one."
+				}
+			},
+			
+			elle_r_elle_sophie = {
+				name = "Sophie",
+				text = {
+					"If score {C:attention}catches",
+					"{C:attention}on fire{}, {E:elle_burn}Burn{} all",
+					"scored cards"
 				}
 			}
-			
 		}
 	},
 	misc = {
@@ -1245,6 +1331,8 @@ return {
 			k_elle_resident = "Resident",
 			k_elle_visitor = "Visitor",
 			b_elle_residents = "Residents",
+
+			elle_sophie_burn = "Burn~",
 
 			elle_resident_replace = "REPLACE",
 
