@@ -575,26 +575,33 @@ return {
 			},
 		},
 		Tarot = {
-			c_elle_resident = {
-				name = "Resident",
+			c_elle_lucid = {
+				name = "The Lucid",
 				text = {
-					"Enhances {C:attention}#1#{} selected",
-					"cards into",
+					"Enhances {C:attention}#1#",
+					"selected cards to",
 					"{C:attention}Slime Cards"
 				}
 			},
 			c_elle_jess = {
 				name = "The Jess",
 				text = {
-					"Enhances {C:attention}#1#{} selected",
-					"cards into",
+					"Enhances {C:attention}#1#",
+					"selected cards to",
 					"{C:attention}Jess Cards"
+				}
+			},
+			c_elle_fallen = {
+				name = "The Fallen",
+				text = {
+					"{E:elle_burn}Burn{} {C:attention}#1#{} selected",
+					"cards once"
 				}
 			}
 		},
 		Rotarot = {
-			c_elle_rot_resident = {
-				name = "{E:mf_rotarot_title}Resident!",
+			c_elle_rot_lucid = {
+				name = "{E:mf_rotarot_title}The Lucid!",
 				text = {
 					"Enhances {C:attention}#1#{} selected",
 					"cards into",
@@ -829,8 +836,8 @@ return {
 				name = "Burnt",
 				text = {
 					"{X:elle_burn,C:white}X1{} Scored values",
-					"per Burn, destroys when",
-					"card exceeds {C:attention}3{} Burns"
+					"per {E:elle_burn}Burn{}, destroys when",
+					"card exceeds {C:attention}3{} burns"
 				}
 			},
 
@@ -1051,14 +1058,17 @@ return {
 			elle_r_elle_cheshire = {
 				name = "Cheshire",
 				text = {
-					"Once per hand,",
-					"use to #1# a", -- #1# -> destroy/eat
-					"{C:attention}selected{} playing card",
-					"At end of round,",
-					"gain {X:mult,C:white}X#2#{} Mult per",
-					"card #3# {C:inactive}[#4#]", -- #3# -> destroyed/eaten
-					"{C:inactive}(Currently {X:mult,C:white}X#5#{C:inactive} Mult)",
-					"{C:attention}#6#"
+					{
+						"Once per hand,",
+						"use to #1# a", -- #1# -> destroy/eat
+						"{C:attention}selected{} playing card",
+						"{C:attention}#6#"
+					},{
+						"At end of round,",
+						"gain {X:mult,C:white}X#2#{} Mult per",
+						"card #3# {C:inactive}[#4#]", -- #3# -> destroyed/eaten
+						"{C:inactive}(Currently {X:mult,C:white}X#5#{C:inactive} Mult)"
+					}
 				},
 				res_bio = {
 					"After being forced out of {C:attention}Chloe{}'s body by",
@@ -1301,9 +1311,36 @@ return {
 			elle_r_elle_sophie = {
 				name = "Sophie",
 				text = {
-					"If score {C:attention}catches",
-					"{C:attention}on fire{}, {E:elle_burn}Burn{} all",
-					"scored cards"
+					{
+						"If score {E:elle_burn}catches on",
+						"{E:elle_burn}fire{}, gain a {C:attention}charge{} for",
+						"each played card",
+						"{C:inactive}(Currently {C:attention}#1#{C:inactive} Charge#4#)"
+					},{
+						"Spend {C:attention}charges{} to add",
+						"{E:elle_burn}Burns{} to selected cards",
+						"and gain {X:mult,C:white}X#2#{} Mult when",
+						"a card {C:red}burns up",
+						"{C:inactive}(Currently {X:mult,C:white}X#3#{C:inactive} Mult)"
+					}
+				}
+			},
+
+
+			-- Crossmod :)
+			elle_r_elle_triangle = {
+				name = "Triangle",
+				text = {
+					
+				},
+				res_bio = {
+					"waow",
+					"{V:1}I'm{} in the mod.",
+					" ",
+					"{C:elle}elle.{} made crossmod stuff so",
+					"{V:1}I{} helped make this because Why Not.",
+					" ",
+					"ts sliming me"
 				}
 			}
 		}

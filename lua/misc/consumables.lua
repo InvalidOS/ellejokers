@@ -1,6 +1,6 @@
--- Resident (Tarot)
+-- The Lucid (Tarot)
 SMODS.Consumable {
-	key = 'resident',
+	key = 'lucid',
 	set = 'Tarot',
 	cost = 4,
 	atlas = 'consumables',
@@ -11,6 +11,7 @@ SMODS.Consumable {
 		return { vars = { card.ability.max_highlighted } }
 	end
 }
+
 
 -- Jess (Tarot)
 SMODS.Consumable {
@@ -26,6 +27,51 @@ SMODS.Consumable {
 	end
 }
 
+-- The Fallen (Tarot)
+SMODS.Consumable {
+	key = 'fallen',
+	set = 'Tarot',
+	cost = 4,
+	atlas = 'consumables',
+	pos = { x = 2, y = 0 },
+	config = { extra = { }, max_highlighted = 1 },
+	loc_vars = function(self, info_queue, card)
+		info_queue[#info_queue+1] = {set="Other",key="elle_burn"}
+		return { vars = { card.ability.max_highlighted } }
+	end,
+	use = function(self, card, area, copier)
+		G.E_MANAGER:add_event(Event({
+			trigger = 'after',
+			delay = 0.4,
+			func = function()
+				play_sound('tarot1')
+				card:juice_up(0.3, 0.5)
+				return true
+			end
+		}))
+		for i = 1, #G.hand.highlighted do
+			local percent = 1.15 - (i - 0.999) / (#G.hand.highlighted - 0.998) * 0.3
+			G.E_MANAGER:add_event(Event({
+				trigger = 'after',
+				delay = 0.2,
+				func = function()
+					ellejokers.add_burn(G.hand.highlighted[i])
+					return true
+				end
+			}))
+		end
+		delay(0.2)
+		G.E_MANAGER:add_event(Event({
+			trigger = 'after',
+			delay = 0.2,
+			func = function()
+				G.hand:unhighlight_all()
+				return true
+			end
+		}))
+		delay(0.5)
+	end,
+}
 
 -- Experiment (Spectral)
 SMODS.Consumable {

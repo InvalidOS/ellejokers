@@ -1,10 +1,17 @@
 if not FLUFF.is_rewrite then return end -- Only continue if playing with the MoreFluff rewrite
 
+SMODS.Atlas {
+	key = "morefluff",
+	path = "crossmod/morefluff.png",
+	px = 71,
+	py = 95
+}
+
 FLUFF.Colour({
 	key = "jessblue",
 	name = "col_jessblue",
-	atlas = "consumables",
-	pos = { x = 2, y = 1 },
+	atlas = "morefluff",
+	pos = { x = 1, y = 1 },
 	config = {
 		upgrade_rounds = 1,
         enhancement = "m_elle_jess"
@@ -19,8 +26,8 @@ FLUFF.Colour({
 FLUFF.Colour({
 	key = "ellepink",
 	name = "col_ellepink",
-	atlas = "consumables",
-	pos = { x = 3, y = 1 },
+	atlas = "morefluff",
+	pos = { x = 2, y = 1 },
 	config = {
 		upgrade_rounds = 1,
         enhancement = "m_elle_slime"
@@ -31,14 +38,14 @@ FLUFF.Colour({
 
 SMODS.Consumable({
 	set = "Rotarot",
-	key = "rot_resident",
-	pos = { x = 2, y = 0 },
+	key = "rot_lucid",
+	pos = { x = 0, y = 0 },
 	config = {
 		max_highlighted = 2,
 		mod_conv = "m_elle_lime",
 	},
 	cost = 3,
-	atlas = "consumables",
+	atlas = "morefluff",
 	unlocked = true,
 	discovered = true,
 	mf_rotate_by = math.pi / 4,
@@ -52,13 +59,13 @@ SMODS.Consumable({
 SMODS.Consumable({
 	set = "Rotarot",
 	key = "rot_jess",
-	pos = { x = 3, y = 0 },
+	pos = { x = 1, y = 0 },
 	config = {
 		max_highlighted = 4,
 		mod_conv = "m_elle_less",
 	},
 	cost = 3,
-	atlas = "consumables",
+	atlas = "morefluff",
 	unlocked = true,
 	discovered = true,
 	mf_rotate_by = math.pi / 4,
@@ -71,8 +78,8 @@ SMODS.Consumable({
 
 SMODS.Enhancement {
 	key = 'lime',
-	atlas = 'enhancers',
-	pos = { x = 2, y = 0 },
+	atlas = 'morefluff',
+	pos = { x = 0, y = 1 },
 	config = { extra = { } },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { } }
@@ -102,4 +109,12 @@ SMODS.Enhancement {
 			}
 		end
 	end
+}
+
+ellejokers.Resident {
+	key = "triangle",
+	atlas = "morefluff",
+	pos = {x=0,y=2},
+	resident_colour = HEX('fd5f55'),
+	mf_art_credit = "notmario"
 }

@@ -1,27 +1,34 @@
 function ellejokers.add_burn(card,count)
 	if card.config.center.set == "Default" or card.config.center.set == "Enhanced" then
 		if (card.ability.elle_burns or 0)+(count or 1) > 3 then SMODS.destroy_cards(card) else
-		G.E_MANAGER:add_event(Event({func = function()
-			card:juice_up(.4,.4)
-			card.ability.elle_burns = (card.ability.elle_burns or 0) + (count or 1)
-		return true end}))end
+		
+		card:juice_up(.4,.4)
+		card.ability.elle_burns = (card.ability.elle_burns or 0) + (count or 1)
+		play_sound("elle_fizz")
+		end
 	end
+end
+
+function ellejokers.burn_vars(card)
+	return {}
 end
 
 ellejokers.Resident {
 	key = 'sophie',
 	pos = { x = 3, y = 1 },
-	config = { extra = { } },
+	config = { extra = { charges = 0, xmult=1, xmult_mod = 0.25 } },
 	resident_colour = HEX("ffcce9"),
 	loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue+1] = {set="Other",key="elle_burn"}
-		return {}
+		return {vars = {card.ability.extra.charges,card.ability.extra.xmult_mod,card.ability.extra.xmult,card.ability.extra.charges==1 and "" or "s"}}
 	end,
 	calculate = function(self, card, context)
 		-- Add the mult stuff
 		if context.after and SMODS.last_hand_oneshot then
 			for i, v in ipairs(context.scoring_hand) do
-				ellejokers.add_burn(v)
+				G.E_MANAGER:add_event(Event({func=function()
+					ellejokers.add_burn(v)
+				return true end}))
 			end
 			return { message = localize("elle_sophie_burn") }
 		end
@@ -206,24 +213,3 @@ function Sprite:draw_self(overlay)
 	end
 	sds_hook(self, overlay)
 end
---[[SMODS.Shader {
-	key = 'burn_card',
-	path = "burn_card.fs",
-	send_vars = function(self, sprite, card) 
-		return {
-			seed = sprite.unique_val,
-			fac = sprite.ability.elle_burns and 1-math.min(math.max(sprite.ability.elle_burns/4,0),1) or 0
-		}
-	end
-}
-
-SMODS.DrawStep {
-	key = 'elle_burns',
-	order = 80,
-	func = function(self, layer)
-		if self.ability.elle_burns and self.ability.elle_burns > 0 then
-			self.children.center:draw_shader("elle_burn_card", nil, nil, nil, self.children.center)
-		end
-	end,
-	conditions = { vortex = false, facing = 'front' }
-}]]
