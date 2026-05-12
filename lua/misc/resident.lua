@@ -16,6 +16,11 @@ ellejokers.Resident = SMODS.Center:extend {
 		badges[#badges + 1] = create_badge(self.resident_visitor and localize('k_elle_visitor') or localize('k_elle_resident'),
 			not slimeutils.card_obscured(card) and self.resident_colour or get_type_colour(card.config.center or card.config, card), G.C.WHITE,
 			1.2)
+	end,
+	inject = function(self)
+		-- call the parent function to ensure all pools are set
+		SMODS.Center.inject(self)
+		G.ARGS.LOC_COLOURS[self.key] = self.resident_colour
 	end
 }
 G.C.SET.elle_Resident = HEX("ff53a9")
