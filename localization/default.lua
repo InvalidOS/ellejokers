@@ -828,7 +828,7 @@ return {
 			elle_burn = {
 				name = "Burnt",
 				text = {
-					"{X:elle_burn,C:white}X0.5{} Scored values",
+					"{X:elle_burn,C:white}X1{} Scored values",
 					"per Burn, destroys when",
 					"card exceeds {C:attention}3{} Burns"
 				}
@@ -1276,7 +1276,7 @@ return {
 					"{C:elle_sarah}Sarah{}'s involvement. It was",
 					"discovered early on that they",
 					"can't be brought back from",
-					"{T:c_death}death{} like normal {C:elle}Residents{}, so",
+					"{C:red,T:c_death}death{} like normal {C:elle}Residents{}, so",
 					"they started being kept in",
 					"stasis after being made."
 				}
@@ -1289,7 +1289,7 @@ return {
 					"{C:attention}experiments{}, before {C:elle_sarah}Sarah{}'s",
 					"involvement. It was discovered early",
 					"on that they can't be brought back",
-					"from {T:c_death}death{} like normal {C:elle}Residents{}, so",
+					"from {C:red,T:c_death}death{} like normal {C:elle}Residents{}, so",
 					"they started being kept in stasis",
 					"after being made.",
 					" ",
