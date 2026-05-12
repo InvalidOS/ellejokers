@@ -1,9 +1,11 @@
 function ellejokers.add_burn(card,count)
-	G.E_MANAGER:add_event(Event({func = function()
-		card:juice_up(.4,.4)
-		card.ability.elle_burns = (card.ability.elle_burns or 0) + (count or 1)
-		if card.ability.elle_burns > 3 then SMODS.destroy_cards(card) end
-	return true end}))
+	if card.config.center.set == "Default" or card.config.center.set == "Enhanced" then
+		if (card.ability.elle_burns or 0)+(count or 1) > 3 then SMODS.destroy_cards(card) else
+		G.E_MANAGER:add_event(Event({func = function()
+			card:juice_up(.4,.4)
+			card.ability.elle_burns = (card.ability.elle_burns or 0) + (count or 1)
+		return true end}))end
+	end
 end
 
 ellejokers.Resident {
@@ -49,26 +51,32 @@ end
 
 local cie_hook = SMODS.calculate_individual_effect
 function SMODS.calculate_individual_effect(effect, scored_card, key, amount, from_edition)
-	if scored_card and scored_card.ability and scored_card.ability.elle_burns and scored_card.ability.elle_burns > 0 then
+	if (scored_card.config.center.set == "Default" or scored_card.config.center.set == "Enhanced") and key~= "message" and scored_card and scored_card.ability and scored_card.ability.elle_burns and scored_card.ability.elle_burns > 0 then
 		local base = scoring_numbers[key] or 0
 
 		local burn_mult = 1+scored_card.ability.elle_burns
 
-		amount = (amount-base)*burn_mult+base
+		local new = (amount-base)*burn_mult+base
+
+		if effect.message then
+			effect.message = effect.message:gsub(amount,new)
+		end
+
+		amount = new
 	end
 
 	return cie_hook(effect, scored_card, key, amount, from_edition)
 end
 
-local burn_canvas = love.graphics.newCanvas(71,95)
+local burn_canvases = {}
 
 local burn_quad = love.graphics.newQuad(0,0,71,95,71,95)
 
 local cd_hook = Card.draw
 function Card:draw(layer)
-	self.children.center.config.elle_burns = self.ability.elle_burns or nil
-	self.children.center.config.elle_unique_val = self.ability.elle_burns and self.unique_val or nil
 	if self.children.front then
+		self.children.center.config.elle_burns = self.ability.elle_burns or nil
+		self.children.center.config.elle_unique_val = self.ability.elle_burns and self.unique_val or nil
 		self.children.front.config.elle_burns = self.ability.elle_burns or nil
 		self.children.front.config.elle_unique_val = self.ability.elle_burns and self.unique_val or nil
 	end
@@ -148,17 +156,19 @@ vec4 effect( vec4 colour, Image texture, vec2 texture_coords, vec2 screen_coords
 
 local sds_hook = Sprite.draw_self
 function Sprite:draw_self(overlay)
-	if self.config.elle_burns and self.config.elle_burns>0 then
-		local cx,cy = burn_canvas:getDimensions()
-
+	if self.config and self.config.elle_burns and self.config.elle_burns>0 then
 		local qx,qy = self.sprite:getTextureDimensions()
 
-		local tw,th = self.RETS.get_pos_pixel[1]*self.RETS.get_pos_pixel[3], self.RETS.get_pos_pixel[2]*self.RETS.get_pos_pixel[4]
-
-		if cx ~= qx or cy ~= qy then
-			burn_canvas:release()
-			burn_canvas = love.graphics.newCanvas(qx,qy)
+		if not burn_canvases[self.atlas.name] then
+			burn_canvases[self.atlas.name] = love.graphics.newCanvas(qx,qy)
 		end
+		
+		local canvas = burn_canvases[self.atlas.name]
+		
+		local cx,cy = canvas:getDimensions()
+
+
+		local tw,th = self.RETS.get_pos_pixel[1]*self.RETS.get_pos_pixel[3], self.RETS.get_pos_pixel[2]*self.RETS.get_pos_pixel[4]
 		
 		local target = love.graphics.getCanvas()
 		local shader = love.graphics.getShader()
@@ -171,7 +181,7 @@ function Sprite:draw_self(overlay)
 		love.graphics.push()
 		love.graphics.origin()
 		love.graphics.translate(tw,th)
-		love.graphics.setCanvas(burn_canvas)
+		love.graphics.setCanvas(canvas)
 		love.graphics.clear()
 
 		love.graphics.draw(self.atlas.image,self.sprite,0,0)
@@ -186,7 +196,7 @@ function Sprite:draw_self(overlay)
 
 		local old_img = self.atlas.image
 
-		self.atlas.image = burn_canvas
+		self.atlas.image = canvas
 
 		sds_hook(self, overlay)
 
