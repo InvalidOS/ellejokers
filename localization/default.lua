@@ -1015,14 +1015,14 @@ return {
 					"discovered {C:elle}The Mall{} it didn't take long",
 					"for her to make up her mind.",
 					" ",
-					"{C:purple}I was doing her a favor when I got",
-					"{C:purple}rid of {C:green}Cassie{C:purple}, I just wish she'd",
-					"{C:purple}understand. I don't blame her for",
-					"{C:purple}being afraid of me though."
+					"{C:elle_r_elle_cheshire}I was doing her a favor when I got",
+					"{C:elle_r_elle_cheshire}rid of {C:green}Cassie{C:elle_r_elle_cheshire}, I just wish she'd",
+					"{C:elle_r_elle_cheshire}understand. I don't blame her for",
+					"{C:elle_r_elle_cheshire}being afraid of me though."
 				}
 			},
 			elle_r_elle_furry = {
-				name = "{st:attention}Chloe{C:attention} Furry",
+				name = "{st:elle_r_elle_furry}Chloe{C:elle_r_elle_furry} Furry",
 				text = {
 					"#1# a {C:attention}random{} held", -- #1# -> destroy/eat
 					"card before scoring",
@@ -1033,26 +1033,26 @@ return {
 				},
 				res_bio = {
 					"Can you believe it? {C:attention}Your{} very own",
-					"{C:attention}tail{} that moves for you! Who could",
+					"{C:elle_r_elle_cheshire}tail{} that moves for you! Who could",
 					"turn down a gift such as this?",
 					" ",
-					"{C:attention}Fuck all of you. Especially {C:elle_sarah}Sarah{C:attention}.",
-					"{C:attention}The fact I had to do all this just",
-					"{C:attention}to stop being an accessory is",
-					"{C:attention}sickening.",
+					"{C:elle_r_elle_furry}Fuck all of you. Especially {C:elle_r_elle_sarah}Sarah{C:elle_r_elle_furry}.",
+					"{C:elle_r_elle_furry}The fact I had to do all this just",
+					"{C:elle_r_elle_furry}to stop being an accessory is",
+					"{C:elle_r_elle_furry}sickening.",
 				}
 			},
 			elle_r_elle_furry_chesh = {
 				res_bio = {
 					"Can you believe it? {C:attention}Your{} very own",
-					"{C:attention}tail{} that moves for you! Who could",
+					"{C:elle_r_elle_cheshire}tail{} that moves for you! Who could",
 					"turn down a gift such as this?",
 					" ",
-					"{C:attention}Fuck all of you. Especially {C:elle_sarah}Sarah{C:attention}. The",
-					"{C:attention}fact I had to do all this just to",
-					"{C:attention}stop being an accessory is sickening.",
+					"{C:elle_r_elle_furry}Fuck all of you. Especially {C:elle_r_elle_sarah}Sarah{C:elle_r_elle_furry}. The",
+					"{C:elle_r_elle_furry}fact I had to do all this just to",
+					"{C:elle_r_elle_furry}stop being an accessory is sickening.",
 					" ",
-					"{C:purple}Things were simpler back then."
+					"{C:elle_r_elle_cheshire}Things were simpler back then."
 				}
 			},
 			elle_r_elle_cheshire = {
@@ -1071,9 +1071,9 @@ return {
 					}
 				},
 				res_bio = {
-					"After being forced out of {C:attention}Chloe{}'s body by",
-					"{C:elle_sarah}Sarah{}, the {C:attention}tail{} hid away for a while,",
-					"eventually sneaking its way into {C:elle_sarah}Sarah{}'s",
+					"After being forced out of {C:elle_r_elle_chloe}Chloe{}'s body by",
+					"{C:elle_r_elle_sarah}Sarah{}, the {C:elle_r_elle_cheshire}tail{} hid away for a while,",
+					"eventually sneaking its way into {C:elle_r_elle_sarah}Sarah{}'s",
 					"mind. Instead of taking control, it dug away",
 					"at the brain, taking what it needed and",
 					"{C:red}discarding{} the rest.",
@@ -1081,26 +1081,26 @@ return {
 					"Turns out that was enough for it to make a",
 					"body of its own.",
 					" ",
-					"{C:purple}What do I even say? I did what had to be",
-					"{C:purple}done to survive."
+					"{C:elle_r_elle_cheshire}What do I even say? I did what had to be",
+					"{C:elle_r_elle_cheshire}done to survive."
 				}
 			},
 			elle_r_elle_sarah = {
 				name = 'Sarah',
 				res_bio = {
-					"{C:elle}The Mall{}'s smartest mind and {C:attention}Chloe{}'s",
+					"{C:elle}The Mall{}'s smartest mind and {C:elle_r_elle_chloe}Chloe{}'s",
 					"girlfriend. As a surprise, she",
 					"repurposed experiments involving",
 					"{C:attention}artificial life{} to create an",
-					"independently-moving {C:attention}tail{} for her.",
+					"independently-moving {C:elle_r_elle_cheshire}tail{} for her.",
 					"By the time she realised that this",
 					"was a mistake...",
 					" ",
-					"{C:purple}It was already too late."
+					"{C:elle_r_elle_cheshire}It was already too late."
 				}
 			},
 			elle_r_elle_mint = {
-				name = '{st:purple}Sarah{C:elle_mint} Mint',
+				name = '{st:elle_r_elle_cheshire}Sarah{C:elle_r_elle_mint} Mint',
 				res_bio = {
 					"When {V:1}you{} start forgetting",
 					"everything, at what point do",
@@ -1119,11 +1119,11 @@ return {
 					"forgetting? At what point do {V:6}you{} forget",
 					"that there was anything to forget?",
 					" ",
-					"{C:purple}A very fitting end if I say so myself,",
-					"{C:purple}easily my finest work. She's happier like",
-					"{C:purple}this. I gave her the name too.",
+					"{C:elle_r_elle_cheshire}A very fitting end if I say so myself,",
+					"{C:elle_r_elle_cheshire}easily my finest work. She's happier like",
+					"{C:elle_r_elle_cheshire}this. I gave her the name too.",
 					" ",
-					"{C:purple}It suits her."
+					"{C:elle_r_elle_cheshire}It suits her."
 				}
 			},
 			elle_r_elle_spearmint = {
@@ -1134,11 +1134,11 @@ return {
 				res_bio = {
 					"A modification of the {C:attention}artificial resident",
 					"{C:attention}experiments{} intended to create a digital",
-					"assistant, later merged with {C:elle_sarah}Sarah{}'s",
+					"assistant, later merged with {C:elle_r_elle_sarah}Sarah{}'s",
 					"memories after her mind started",
-					"{C:elle_mint}deteriorating{}.",
+					"{C:elle_r_elle_mint}deteriorating{}.",
 					" ",
-					"She still doesn't identify as {C:elle_sarah}Sarah{}, nor",
+					"She still doesn't identify as {C:elle_r_elle_sarah}Sarah{}, nor",
 					"does she act like her, yet some people",
 					"still see her as the same person",
 					"somehow."
@@ -1151,13 +1151,13 @@ return {
 					"{C:inactive}(Restocks at end of Ante)"
 				},
 				res_bio = {
-					"Many of {C:elle_sarah}Sarah{}'s experiments involve using {C:elle}The",
+					"Many of {C:elle_r_elle_sarah}Sarah{}'s experiments involve using {C:elle}The",
 					"{C:elle}Mall{}'s strange logic to do impossible things.",
 					"One of these experiments was a machine that",
 					"can create {C:attention}food{} from tiny samples.",
 					" ",
 					"{C:elle_r_elle_rebecca}Rebecca{} heard about it and asked about",
-					"running a {C:attention}Café{} using the machine. {C:elle_sarah}Sarah{}, of",
+					"running a {C:attention}Café{} using the machine. {C:elle_r_elle_sarah}Sarah{}, of",
 					"course, agreed.",
 					" ",
 					"{C:elle_r_elle_rebecca}Oh and, in case you were wondering- I'm made",
@@ -1191,8 +1191,8 @@ return {
 				},
 				res_bio = {
 					"After finding out that",
-					"{C:elle_sarah}Spearmint{} had a copy of",
-					"{C:elle_sarah}Sarah{}'s memories in her, {C:attention}Chloe",
+					"{C:elle_r_elle_sarah}Spearmint{} had a copy of",
+					"{C:elle_r_elle_sarah}Sarah{}'s memories in her, {C:elle_r_elle_chloe}Chloe",
 					"grew attached. Without the",
 					"skills to make a proper body",
 					"for her, she tried the next",
@@ -1207,7 +1207,7 @@ return {
 					"so there's a chance you get",
 					"one of them instead.",
 					" ",
-					"{C:elle}-elle."
+					"{C:elle,T:j_elle_elle}-elle."
 				}
 			},
 
@@ -1221,7 +1221,7 @@ return {
 					"...You'd fuck a lamp too, wouldn't",
 					"you?",
 					" ",
-					"{C:elle}-elle."
+					"{C:elle,T:j_elle_elle}-elle."
 				}
 			},
 
@@ -1233,14 +1233,14 @@ return {
 			},
 
 			elle_r_elle_spearlamp_jess = {
-				name = '{C:elle_sarah}Jess{}lamp',
+				name = '{C:elle_r_elle_sarah}Jess{}lamp',
 				text = {
 					""
 				}
 			},
 			
 			elle_r_elle_spearlamp_drago = {
-				name = '{C:purple}Drago{}lamp',
+				name = '{C:elle_r_elle_cheshire}Drago{}lamp',
 				text = {
 					""
 				}
@@ -1251,7 +1251,7 @@ return {
 				res_bio = {
 					"Apparently, turning attempts",
 					"at {C:attention}sentient, humanoid life{} into",
-					"just a {C:purple}tail{} is more difficult",
+					"just a {C:elle_r_elle_cheshire}tail{} is more difficult",
 					"than it seems.",
 					" ",
 					"Instead you're left with a",
@@ -1263,18 +1263,18 @@ return {
 			elle_r_elle_p41_chesh = {
 				res_bio = {
 					"Apparently, turning attempts at {C:attention}sentient, humanoid",
-					"{C:attention}life{} into just a {C:purple}tail{} is more difficult than it seems.",
+					"{C:attention}life{} into just a {C:elle_r_elle_cheshire}tail{} is more difficult than it seems.",
 					" ",
 					"Instead you're left with a catgirl that has as many",
 					"tails as she wants.",
 					" ",
-					"{C:purple}I dragged {C:attention}Chloe{C:purple} along for an expedition through",
-					"{C:elle_sarah}Sarah{C:purple}'s old lab not too long ago, hoping to show her",
-					"{C:purple}just how bad she was. Turns out a bunch of these",
-					"{C:purple}were just being kept in statis this whole time.",
+					"{C:elle_r_elle_cheshire}I dragged {C:elle_r_elle_chloe}Chloe{C:elle_r_elle_cheshire} along for an expedition through",
+					"{C:elle_r_elle_sarah}Sarah{C:elle_r_elle_cheshire}'s old lab not too long ago, hoping to show her",
+					"{C:elle_r_elle_cheshire}just how bad she was. Turns out a bunch of these",
+					"{C:elle_r_elle_cheshire}were just being kept in statis this whole time.",
 					" ",
-					"{C:purple}I let {C:attention}Chloe{C:purple} look after this one. Hopefully that",
-					"{C:purple}cheers her up a bit."
+					"{C:elle_r_elle_cheshire}I let {C:elle_r_elle_chloe}Chloe{C:elle_r_elle_cheshire} look after this one. Hopefully that",
+					"{C:elle_r_elle_cheshire}cheers her up a bit."
 				}
 			},
 			
@@ -1283,7 +1283,7 @@ return {
 				res_bio = {
 					"One of the earlier {C:attention}Artificial",
 					"{C:attention}Resident experiments{}, before",
-					"{C:elle_sarah}Sarah{}'s involvement. It was",
+					"{C:elle_r_elle_sarah}Sarah{}'s involvement. It was",
 					"discovered early on that they",
 					"can't be brought back from",
 					"{C:red,T:c_death}death{} like normal {C:elle}Residents{}, so",
@@ -1296,15 +1296,15 @@ return {
 				name = "Prototype #1#23",
 				res_bio = {
 					"One of the earlier {C:attention}Artificial Resident",
-					"{C:attention}experiments{}, before {C:elle_sarah}Sarah{}'s",
+					"{C:attention}experiments{}, before {C:elle_r_elle_sarah}Sarah{}'s",
 					"involvement. It was discovered early",
 					"on that they can't be brought back",
 					"from {C:red,T:c_death}death{} like normal {C:elle}Residents{}, so",
 					"they started being kept in stasis",
 					"after being made.",
 					" ",
-					"{C:purple}This was one of the first attempts",
-					"{C:purple}to look humanoid. I kept this one."
+					"{C:elle_r_elle_cheshire}This was one of the first attempts",
+					"{C:elle_r_elle_cheshire}to look humanoid. I kept this one."
 				}
 			},
 			
@@ -1335,10 +1335,10 @@ return {
 				},
 				res_bio = {
 					"waow",
-					"{V:1}I'm{} in the mod.",
+					"{C:red}I'm{} in the mod.",
 					" ",
 					"{C:elle}elle.{} made crossmod stuff so",
-					"{V:1}I{} helped make this because Why Not.",
+					"{C:red}I{} helped make this because Why Not.",
 					" ",
 					"ts sliming me"
 				}

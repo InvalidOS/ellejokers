@@ -33,5 +33,5 @@ ellejokers.Resident {
 			end
 		end
 	end,
-	resident_colour = HEX("89ca80")
+	resident_colour = HEX("ffa747")
 }
