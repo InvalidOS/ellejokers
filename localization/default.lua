@@ -1146,12 +1146,12 @@ return {
 					"One of these experiments was a machine that",
 					"can create {C:attention}food{} from tiny samples.",
 					" ",
-					"{V:1}Rebecca{} heard about it and asked about",
+					"{C:elle_r_elle_rebecca}Rebecca{} heard about it and asked about",
 					"running a {C:attention}Café{} using the machine. {C:elle_sarah}Sarah{}, of",
 					"course, agreed.",
 					" ",
-					"{V:1}Oh and, in case you were wondering- I'm made",
-					"{V:1}of honey, hence the bee stuff~"
+					"{C:elle_r_elle_rebecca}Oh and, in case you were wondering- I'm made",
+					"{C:elle_r_elle_rebecca}of honey, hence the bee stuff~"
 				}
 			},
 			elle_r_elle_bea = {
@@ -1167,7 +1167,7 @@ return {
 					"turned into {C:attention}food{} or drinks instead",
 					"of slime by bringing something",
 					"edible with them when going to",
-					"{C:elle}Marie{}. {V:1}Bea{} here brought some soda",
+					"{C:elle}Marie{}. {C:elle_r_elle_bea}Bea{} here brought some soda",
 					"with her.",
 					" ",
 					"Other than that she's a regular",

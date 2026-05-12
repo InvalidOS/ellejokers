@@ -22,9 +22,6 @@ ellejokers.Resident {
 	},
 	resident_colour = HEX("89ca80"),
 	elle_tail = {x = 2, y = 3},
-	loc_vars = function(self, info_queue, card)
-		return {vars={colours={ self.resident_colour }}}
-	end
 }
 
 --local becca_obj = Sprite(0,0,192,256,"rebecca",{x=0,y=0})
