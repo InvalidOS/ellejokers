@@ -72,7 +72,7 @@ SMODS.Consumable {
 	set = 'Spectral',
 	cost = 7,
 	atlas = 'consumables',
-	pos = { x = 0, y = 1 },
+	pos = { x = 0, y = 2 },
 	config = { extra = {max_highlighted = 2} },
 	loc_vars = function(self, info_queue, card)
 		return { vars = { card.ability.extra.max_highlighted } }
@@ -164,7 +164,7 @@ SMODS.Consumable {
 	set = 'Spectral',
 	cost = 7,
 	atlas = 'consumables',
-	pos = { x = 1, y = 1 },
+	pos = { x = 1, y = 2 },
 	config = { extra = { }, max_highlighted = 1, mod_conv = "m_elle_copycat" },
 	loc_vars = function(self, info_queue, card)
 		info_queue[#info_queue+1] = G.P_CENTERS.m_elle_copycat

@@ -151,7 +151,6 @@ local burn_shader_old = love.graphics.newShader(SMODS.NFS.newFileData(SMODS.curr
 
 SMODS.SpriteStep {
 	key = "burns",
-	order = 1,
 	func = function(self, image, quad, sprite)
 		local s = burn_shader_old--love.keyboard.isDown("lshift") and burn_shader_old or burn_shader
 		love.graphics.setShader(s)

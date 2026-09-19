@@ -38,11 +38,22 @@ local splashes = {
 	"Yet another OC mod",
 	"Hi chat!",
 	"elle wuz here.",
-	"9 members and counting",
+	"12 members and counting",
 	"Can you believe the shit they let me write in here?",
 	"Beware the purple cat...",
 	"I'll make you pay! I've got friends on the inside!",
-	
+	"Swishes my big fluffy $$$$-ing tail",
+	"W-woah!!! (destroys buildings because it's so big) YOU GUYS!!!",
+	"Sorry to keep you waiting~",
+	"Heh, it's my Jarona!",
+	"Here I come Sanfrandiscooooooo!",
+	"You know what that means!",
+	"Hey kid, you want a weiner in your mouth?",
+	"This is good news.",
+	"homer maggie bart homer maggie bart lisa",
+	"Way up high, in the sky",
+	"The coder's barely disguised Vanilla+ mod",
+	"Guess I'm Oogily Goo!",
 }
 
 -- ty aiko for telling me how to do this lol
@@ -69,7 +80,7 @@ SMODS.current_mod.custom_ui = function(mod_nodes)
 								padding = 0.2,
 								colour = G.C.BLACK
 							}, nodes = {
-								{n = G.UIT.T, config = {text = "ellejokers.", scale = .75, colour = G.C.WHITE}}
+								{n = G.UIT.T, config = {text = "Mallatro", scale = .75, colour = G.C.WHITE}}
 						}}
 				}}
 		}},
@@ -91,9 +102,9 @@ SMODS.current_mod.custom_ui = function(mod_nodes)
 						{n = G.UIT.C, config = {align = "cl", padding = 0.1, minw = 4}, nodes = {
 							{n = G.UIT.R, nodes = {
 								{n = G.UIT.T, config = {text = "A mod by ", scale = .4, colour = G.C.WHITE}},
-								{n = G.UIT.T, config = {text = "ellestuff.", scale = .4, colour = G.ARGS.LOC_COLOURS.elle}}
+								{n = G.UIT.T, config = {text = "slimestuff.", scale = .4, colour = G.ARGS.LOC_COLOURS.elle}}
 							}},
-							{n = G.UIT.R, nodes = {{n = G.UIT.T, config = {text = "(and featuring her characters)", scale = .3, colour = G.C.WHITE}}}}
+							{n = G.UIT.R, nodes = {{n = G.UIT.T, config = {text = "(and featuring our characters)", scale = .3, colour = G.C.WHITE}}}}
 						}}
 					}},
 				}},
@@ -109,9 +120,9 @@ SMODS.current_mod.custom_ui = function(mod_nodes)
 							colour = G.C.L_BLACK
 						}, nodes = {
 						{n = G.UIT.C, config = {align = "cr", padding = 0.1, minw = 4}, nodes = {
-							{n = G.UIT.R, config = {align = "cr"}, nodes = {{n = G.UIT.T, config = {text = "Based off my dumb", scale = .4, colour = G.C.WHITE}}}},
+							{n = G.UIT.R, config = {align = "cr"}, nodes = {{n = G.UIT.T, config = {text = "Based off our dumb", scale = .4, colour = G.C.WHITE}}}},
 							{n = G.UIT.R, config = {align = "cr"}, nodes = {{n = G.UIT.T, config = {text = "fuckin' slime girl OCs and", scale = .4, colour = G.C.WHITE}}}},
-							{n = G.UIT.R, config = {align = "cr"}, nodes = {{n = G.UIT.T, config = {text = "the lore I gave them", scale = .4, colour = G.C.WHITE}}}}
+							{n = G.UIT.R, config = {align = "cr"}, nodes = {{n = G.UIT.T, config = {text = "the lore we gave them", scale = .4, colour = G.C.WHITE}}}}
 						}},
 						{n = G.UIT.C, nodes = {{n = G.UIT.O, config = { object = slimeutils.create_display_card("elle_r_elle_marie") }}}}
 					}}
